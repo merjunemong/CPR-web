@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{{ skill }}을 사용하는 직업</title>
+        <!-- Favicon-->
+        {% load static %}
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <style>
+            .node {
+                stroke: #fff;
+                stroke-width: 1.5px;
+            }
+            .link {
+                stroke: #999;
+                stroke-opacity: 0.6;
+            }
+            text {
+                font: 15px sans-serif;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- 선택된 스킬명 -->
+        <div class="display-5 fw-bolder mt-3" align="center">{{ skill }} 관련 직업</div>
+
+        <!-- D3.js 그래프 -->
+        <svg id="jobGraph" width="800" height="500"></svg>
+
+        <!-- 뒤로가기 버튼 -->
+        <div class="btn-container mt-5 mx-3">
+            <button class="btn btn-outline-info fw-bolder" onclick="goBack()">뒤로 가기</button>
+        </div>
+
+        <script>
+
+            function goBack() {
+                window.history.back();
+            }
+
+            const jobs = {{ jobs|safe }};  // 서버에서 받아온 관련 직업 리스트
+            const skill = "{{ skill|safe }}";
+
+            const data = {
+                nodes: [
+                    { id: skill, group: 1 },
+                    ...jobs.map(job => ({ id: job, group: 2 }))
+                ],
+                links: jobs.map(job => ({ source: skill, target: job }))
+            };
+
+            const svg = d3.select("#jobGraph");
+            const width = +svg.attr("width");
+            const height = +svg.attr("height");
+
+            const simulation = d3.forceSimulation(data.nodes)
+                .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
+                .force("charge", d3.forceManyBody().strength(-500))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            const link = svg.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(data.links)
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("stroke-width", 2);
+
+            const node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("circle")
+                .data(data.nodes)
+                .enter().append("circle")
+                .attr("class", "node")
+                .attr("r", 15)
+                .attr("fill", d => d.group === 1 ? "red" : "blue");
+
+            const text = svg.append("g")
+                .attr("class", "texts")
+                .selectAll("text")
+                .data(data.nodes)
+                .enter().append("text")
+                .attr("x", 15)
+                .attr("y", 3)
+                .text(d => d.id);
+
+            simulation.on("tick", () => {
+                link.attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node.attr("cx", d => d.x)
+                    .attr("cy", d => d.y);
+
+                text.attr("x", d => d.x + 15)
+                    .attr("y", d => d.y + 3);
+            });
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        {% load static %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

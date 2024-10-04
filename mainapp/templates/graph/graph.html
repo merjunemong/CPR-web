@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{{ job_name|safe }} 관련 스킬</title>
+        <!-- Favicon-->
+        {% load static %}
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <style>
+            .node {
+                stroke: #fff;
+                stroke-width: 1.5px;
+            }
+            .link {
+                stroke: #999;
+                stroke-opacity: 0.6;
+            }
+            text {
+                font: 15px sans-serif;
+                pointer-events: none;
+            }
+            table {
+                margin-right: 10px;
+                margin-left: 10px;
+                border-collapse: collapse;
+                width: 600px;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 8px;
+                text-align: left;
+            }
+            .highlight {
+                background-color: yellow;
+            }
+            .selected {
+                stroke: orange;
+                stroke-width: 3px;
+            }
+            #related-jobs-btn {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- 직업명 -->
+        <div class="display-5 fw-bolder mt-3" align="center">{{ job_name|safe }}</div>
+
+        <!-- SVG 그래프 -->
+        <div style="float: left;">
+            <svg id="graph" width="800" height="500"></svg>
+            
+            <div class="col-lg-4 col-xl-6 mt-5 mx-3">
+                <div class="btn-container mt-5 mx-3">
+                    <!-- 관련 직업 확인 버튼 -->
+                    <button class="btn btn-info fw-bolder" id="related-jobs-btn">관련 직업 확인</button>
+                    <!-- 뒤로가기 버튼 -->
+                    <button class="btn btn-outline-info fw-bolder" onclick="goBack()">뒤로 가기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3열 표 -->
+        <div style="float: right;">
+            <table id="skillsTable">
+                <thead>
+                    <tr>
+                        <th colspan="3">Skills</th>
+                    </tr>
+                </thead>
+                <tbody id="skillsBody">
+                    <!-- 스킬이 여기에 삽입됩니다 -->
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            
+            // CSRF 토큰을 가져오는 함수
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            
+            function goBack() {
+                window.history.back();
+            }
+
+            const job_name = "{{ job_name|safe }}";
+            const skills_list = {{ skills|safe }};
+            console.log('선택된 작업:', job_name, '선택된 skills:', skills_list);
+
+            const data = {
+                nodes: [
+                    { id: job_name, group: 1 },
+                    ...skills_list.map(skill => ({ id: skill, group: 2 }))
+                ],
+                links: skills_list.map(skill => ({ source: job_name, target: skill }))
+            };
+
+            const svg = d3.select("#graph");
+            const width = +svg.attr("width");
+            const height = +svg.attr("height");
+
+            const simulation = d3.forceSimulation(data.nodes)
+                .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
+                .force("charge", d3.forceManyBody().strength(-500))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            const link = svg.append("g")
+                .attr("class", "links")
+                .selectAll("line")
+                .data(data.links)
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("stroke-width", 2);
+
+            const node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("circle")
+                .data(data.nodes)
+                .enter().append("circle")
+                .attr("class", "node")
+                .attr("r", 15)
+                .attr("fill", d => d.group === 1 ? "red" : "blue")
+                .on("click", (event, d) => {
+                    highlightItem(d.id);
+                    handleSkillClick(d);
+                })
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            const text = svg.append("g")
+                .attr("class", "texts")
+                .selectAll("text")
+                .data(data.nodes)
+                .enter().append("text")
+                .attr("x", 15)
+                .attr("y", 3)
+                .text(d => d.id);
+
+            simulation.on("tick", () => {
+                link.attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node.attr("cx", d => d.x)
+                    .attr("cy", d => d.y);
+
+                text.attr("x", d => d.x + 15)
+                    .attr("y", d => d.y + 3);
+            });
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+
+            // 그래프 및 표 강조
+            function highlightItem(id) {
+                // Reset previously highlighted items
+                d3.selectAll("circle").classed("selected", false);
+                d3.selectAll("td").classed("highlight", false);
+
+                // Highlight clicked node in graph
+                d3.selectAll("circle").filter(d => d.id === id).classed("selected", true);
+
+                // Highlight corresponding cell in table
+                d3.selectAll("td").filter(function(event, d) {
+                    return d3.select(this).text().trim() === id;
+                }).classed("highlight", true);
+            }
+
+            // 스킬을 테이블로 표현
+            function splitSkillsIntoThreeColumns(skills) {
+                const tbody = d3.select("#skillsBody");
+                const thirdLength = Math.ceil(skills.length / 3);
+                const firstColumn = skills.slice(0, thirdLength);
+                const secondColumn = skills.slice(thirdLength, 2 * thirdLength);
+                const thirdColumn = skills.slice(2 * thirdLength);
+
+                firstColumn.forEach((skill, i) => {
+                    const row = tbody.append("tr");
+                    row.append("td").text(skill);
+                    row.append("td").text(secondColumn[i] || "");  // 두 번째 열이 없을 경우 빈칸으로 처리
+                    row.append("td").text(thirdColumn[i] || "");  // 세 번째 열이 없을 경우 빈칸으로 처리
+                });
+
+                // 테이블 행 클릭 이벤트
+                d3.selectAll("td").on("click", function() {
+                    const selectedText = d3.select(this).text().trim();
+                    highlightItem(selectedText);
+                    selectedSkill = selectedText;
+                    const button = document.getElementById('related-jobs-btn');
+                    button.style.display = 'block';
+                });
+            }
+
+            // 페이지가 로드되면 스킬을 분할하여 테이블에 삽입
+            splitSkillsIntoThreeColumns(skills_list);
+            
+            
+            // 스킬 클릭 시 처리
+            function handleSkillClick(d) {
+                if (d.group === 2) { // 스킬 그룹일 때만 작동
+                    selectedSkill = d.id;
+                    const button = document.getElementById('related-jobs-btn');
+                    button.style.display = 'block';  // 버튼 보이게 설정
+                }
+            }
+
+            // 관련 직업 확인 버튼 클릭 시 처리
+            document.getElementById('related-jobs-btn').addEventListener('click', function() {
+                fetchRelatedJobs(); // 스킬에 대한 관련 직업 검색 함수 호출
+            });
+            
+            // 관련 직업 확인 버튼 클릭 시 백엔드에 요청
+            function fetchRelatedJobs() {
+                if (selectedSkill) {
+                    const csrftoken = getCookie('csrftoken');
+                    console.log('선택된 스킬: ', selectedSkill);
+                    fetch('extend/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken // CSRF 토큰을 헤더에 포함
+                        },
+                        body: JSON.stringify({ skill: selectedSkill })
+                    })
+                    .then(data => {
+                        window.location.href = 'extend/';
+                    })
+                    .catch(error => console.error('Error fetching related jobs:', error));
+                }
+            }
+
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        {% load static %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

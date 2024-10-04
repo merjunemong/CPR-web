@@ -1,0 +1,231 @@
+2024-09-25 17:39:16,192 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-25 17:39:16,192 - INFO - Added job "backup_data" to job store "default"
+2024-09-25 17:39:16,192 - INFO - Scheduler started
+2024-09-25 17:39:18,085 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-25 17:39:18,085 - INFO - Added job "backup_data" to job store "default"
+2024-09-25 17:39:18,086 - INFO - Scheduler started
+2024-09-25 17:39:18,118 - INFO - Watching for file changes with StatReloader
+2024-09-25 17:39:25,310 - INFO - C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\apps.py changed, reloading.
+2024-09-25 17:39:27,315 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-25 17:39:27,319 - INFO - Added job "backup_data" to job store "default"
+2024-09-25 17:39:27,319 - INFO - Scheduler started
+2024-09-25 17:39:27,375 - INFO - Watching for file changes with StatReloader
+2024-09-25 17:39:34,423 - ERROR - Unable to retrieve routing information
+2024-09-25 17:39:34,639 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\views.py", line 88, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 145, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-09-25 17:39:40,239 - ERROR - Unable to retrieve routing information
+2024-09-25 17:39:40,268 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\views.py", line 88, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 145, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-09-25 17:41:00,016 - INFO - Running job "backup_data (trigger: cron[hour='17', minute='41'], next run at: 2024-09-25 17:41:00 KST)" (scheduled at 2024-09-25 17:41:00+09:00)
+2024-09-25 17:41:04,098 - ERROR - Unable to retrieve routing information
+2024-09-25 17:41:04,103 - ERROR - Job "backup_data (trigger: cron[hour='17', minute='41'], next run at: 2024-09-21 17:41:00 KST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\cprenv\Lib\site-packages\neo4j_backup\neo4j_extractor.py", line 113, in _test_connection
+    session.run("MATCH (a) RETURN a LIMIT 1")
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 182, in _connect
+    self._connection = self._pool.acquire(**acquire_kwargs_)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 910, in acquire
+    self.ensure_routing_table_is_fresh(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 852, in ensure_routing_table_is_fresh
+    self.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\cprenv\Lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 169, in backup_data
+    driver.dump_neo4j_db()
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 121, in dump_neo4j_db
+    extractor.extract_data()
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\cprenv\Lib\site-packages\neo4j_backup\neo4j_extractor.py", line 63, in extract_data
+    self._test_connection()
+  File "C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\cprenv\Lib\site-packages\neo4j_backup\neo4j_extractor.py", line 115, in _test_connection
+    raise ServiceUnavailable("Unable to connect to database. If this is a local database, make sure the "
+neo4j.exceptions.ServiceUnavailable: Unable to connect to database. If this is a local database, make sure the database is running. If this is a remote database, make sure the correct database is referenced.
+2024-09-25 17:41:08,485 - INFO - C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\apps.py changed, reloading.
+2024-09-25 17:41:10,462 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-25 17:41:10,462 - INFO - Added job "backup_data" to job store "default"
+2024-09-25 17:41:10,462 - INFO - Scheduler started
+2024-09-25 17:41:10,495 - INFO - Watching for file changes with StatReloader
+2024-09-25 17:41:43,964 - INFO - admin delete skill 123 at ï¿½ï¿½ï¿½ï¿½
+2024-09-25 17:43:00,007 - INFO - Running job "backup_data (trigger: cron[hour='17', minute='43'], next run at: 2024-09-25 17:43:00 KST)" (scheduled at 2024-09-25 17:43:00+09:00)
+2024-09-25 17:43:01,189 - INFO - admin save new skill 123 to ï¿½ï¿½ï¿½ï¿½
+2024-09-25 17:43:34,307 - INFO - Neo4j datatbase has backed up at 20240920
+2024-09-25 17:43:34,308 - INFO - Job "backup_data (trigger: cron[hour='17', minute='43'], next run at: 2024-09-21 17:43:00 KST)" executed successfully
+2024-09-25 18:18:05,963 - INFO - C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\apps.py changed, reloading.
+2024-09-25 18:18:09,668 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-25 18:18:09,668 - INFO - Added job "backup_data" to job store "default"
+2024-09-25 18:18:09,670 - INFO - Scheduler started
+2024-09-25 18:18:09,753 - INFO - Watching for file changes with StatReloader
+2024-09-25 18:44:13,892 - WARNING - Not Found: /resume/result/assets/favicon.ico
+2024-09-27 15:53:33,409 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-27 15:53:33,409 - INFO - Added job "backup_data" to job store "default"
+2024-09-27 15:53:33,410 - INFO - Scheduler started
+2024-09-27 15:53:34,944 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-09-27 15:53:34,944 - INFO - Added job "backup_data" to job store "default"
+2024-09-27 15:53:34,944 - INFO - Scheduler started
+2024-09-27 15:53:34,974 - INFO - Watching for file changes with StatReloader
+2024-09-27 15:54:06,788 - WARNING - Not Found: /viewdb/assets/favicon.ico
+2024-09-27 15:55:00,018 - INFO - Running job "backup_data (trigger: cron[hour='15', minute='55'], next run at: 2024-09-27 15:55:00 KST)" (scheduled at 2024-09-27 15:55:00+09:00)
+2024-09-27 15:55:31,570 - INFO - Neo4j datatbase has backed up at 20240924
+2024-09-27 15:55:31,571 - INFO - Job "backup_data (trigger: cron[hour='15', minute='55'], next run at: 2024-09-25 15:55:00 KST)" executed successfully
+2024-09-27 15:56:22,423 - INFO - admin delete skill 123 at ï¿½ï¿½ï¿½ï¿½
+2024-09-27 15:56:37,671 - INFO - admin save new skill 123 to ï¿½ï¿½ï¿½ï¿½
+2024-10-02 14:16:07,749 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-02 14:16:07,751 - INFO - Added job "backup_data" to job store "default"
+2024-10-02 14:16:07,751 - INFO - Scheduler started
+2024-10-02 14:16:09,712 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-02 14:16:09,712 - INFO - Added job "backup_data" to job store "default"
+2024-10-02 14:16:09,712 - INFO - Scheduler started
+2024-10-02 14:16:09,742 - INFO - Watching for file changes with StatReloader
+2024-10-02 14:16:36,997 - INFO - C:\Users\kdjun\OneDrive\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\ï¿½Ð±ï¿½ï¿½ï¿½È°\ï¿½ï¿½ï¿½Æ´ï¿½\24ï¿½âµµ\ï¿½ï¿½ï¿½ï¿½\CPR-web\config\mainapp\apps.py changed, reloading.
+2024-10-02 14:16:39,082 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-02 14:16:39,082 - INFO - Added job "backup_data" to job store "default"
+2024-10-02 14:16:39,082 - INFO - Scheduler started
+2024-10-02 14:16:39,117 - INFO - Watching for file changes with StatReloader
+2024-10-02 14:17:59,020 - WARNING - Not Found: /viewdb/assets/favicon.ico
+2024-10-02 14:18:19,923 - INFO - admin delete skill 123 at ï¿½ï¿½ï¿½ï¿½
+2024-10-02 14:18:29,667 - INFO - admin save new skill 123 to ï¿½ï¿½ï¿½ï¿½
+2024-10-02 14:20:00,025 - INFO - Running job "backup_data (trigger: cron[hour='14', minute='20'], next run at: 2024-10-02 14:20:00 KST)" (scheduled at 2024-10-02 14:20:00+09:00)
+2024-10-02 14:20:47,782 - INFO - Neo4j datatbase has backed up at 20241002
+2024-10-02 14:20:47,782 - INFO - Job "backup_data (trigger: cron[hour='14', minute='20'], next run at: 2024-10-03 14:20:00 KST)" executed successfully
+2024-10-03 15:11:38,841 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-03 15:11:38,841 - INFO - Added job "backup_data" to job store "default"
+2024-10-03 15:11:38,841 - INFO - Scheduler started
+2024-10-03 15:11:43,632 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-03 15:11:43,632 - INFO - Added job "backup_data" to job store "default"
+2024-10-03 15:11:43,632 - INFO - Scheduler started
+2024-10-03 15:11:43,946 - INFO - Watching for file changes with StatReloader
+2024-10-03 15:12:03,642 - ERROR - Unable to retrieve routing information
+2024-10-03 15:12:03,887 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\¹ÙÅÁ È­¸é\ÇÐ±³»ýÈ°\µ¿¾Æ´ë\24³âµµ\Á¹ÀÛ\CPR-web\config\mainapp\views.py", line 88, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\¹ÙÅÁ È­¸é\ÇÐ±³»ýÈ°\µ¿¾Æ´ë\24³âµµ\Á¹ÀÛ\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 145, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\¹ÙÅÁ È­¸é\ÇÐ±³»ýÈ°\µ¿¾Æ´ë\24³âµµ\Á¹ÀÛ\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\¹ÙÅÁ È­¸é\ÇÐ±³»ýÈ°\µ¿¾Æ´ë\24³âµµ\Á¹ÀÛ\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\¹ÙÅÁ È­¸é\ÇÐ±³»ýÈ°\µ¿¾Æ´ë\24³âµµ\Á¹ÀÛ\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # Äõ¸® ½ÇÇà
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-03 15:12:57,300 - WARNING - Not Found: /resume/assets/favicon.ico
+2024-10-03 17:02:54,249 - WARNING - Not Found: /resume/result/assets/favicon.ico
+2024-10-04 15:43:20,335 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 15:43:20,335 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 15:43:20,336 - INFO - Scheduler started
+2024-10-04 15:43:21,817 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 15:43:21,817 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 15:43:21,817 - INFO - Scheduler started
+2024-10-04 15:43:21,847 - INFO - Watching for file changes with StatReloader
+2024-10-04 16:20:17,715 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 16:20:17,716 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 16:20:17,716 - INFO - Scheduler started
+2024-10-04 16:20:19,392 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 16:20:19,393 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 16:20:19,393 - INFO - Scheduler started
+2024-10-04 16:20:19,424 - INFO - Watching for file changes with StatReloader
+2024-10-04 16:20:47,538 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 16:20:47,538 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 16:20:47,538 - INFO - Scheduler started
+2024-10-04 16:20:49,240 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 16:20:49,241 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 16:20:49,241 - INFO - Scheduler started
+2024-10-04 16:20:49,272 - INFO - Watching for file changes with StatReloader
+2024-10-04 16:21:16,616 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 16:21:16,616 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 16:21:16,616 - INFO - Scheduler started
+2024-10-04 16:21:18,428 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-04 16:21:18,428 - INFO - Added job "backup_data" to job store "default"
+2024-10-04 16:21:18,428 - INFO - Scheduler started
+2024-10-04 16:21:18,464 - INFO - Watching for file changes with StatReloader
