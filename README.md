@@ -3,4 +3,5 @@ CPR 프로젝트의 웹 서비스를 aws에 업로드 하기 위한 repository�
 
 Career-Path-Recommendation(https://github.com/JeMinMoon/Career-Path-Recommendation)
 
-![image](https://github.com/user-attachments/assets/1597bc92-721f-49dc-af74-f510436fb88c)
+![image](https://github.com/user-attachments/assets/a3a726f1-f8ce-4789-8721-418e6d33f31b)
+
