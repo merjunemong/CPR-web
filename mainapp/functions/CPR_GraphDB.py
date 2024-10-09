@@ -125,7 +125,7 @@ class CPR_GraphDB:
     
 def openApp():
     scheme = "neo4j"  # Connecting to Aura, use the "neo4j+s" URI scheme
-    host_name = "localhost"
+    host_name = "15.164.184.249"
     port = 7687
     uri = f"{scheme}://{host_name}:{port}"
     user = "neo4j"
