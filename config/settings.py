@@ -132,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 from neo4j import GraphDatabase
 
-NEO4J_URI = "bolt:15.164.184.249:7687"
+NEO4J_URI = "bolt:13.209.36.125:7687"
 NEO4J_USERNAME = "neo4j"
 NEO4J_PASSWORD = "cpr2024@"
 
