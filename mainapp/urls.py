@@ -12,5 +12,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('api/skill/add/', views.add_to_database, name='add_to_database'),
     path('api/skill/delete/', views.delete_from_database, name='delete_from_database'),
+    path('dump_neo4j_db/', views.dump_neo4j_db, name='dump_neo4j_db'),
 ]
 

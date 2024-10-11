@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse, FileResponse
 from django.core.files.storage import FileSystemStorage
 from .forms import *
 from .functions.resume_to_skills import getSkillsFromResume
 from .functions.CPR_GraphDB import *
 import json
+import subprocess
+import os
 
 # Create your views here.
 
@@ -66,7 +69,7 @@ def draw_graph(request): # display job-skill graph
     skills = request.session.pop('skills', None)
     return render(request, 'graph/graph.html', {'job_name': job, 'skills': skills})
 
-def graph_extend(request):
+def graph_extend(request): # display extended job-skill graph
     if request.method == 'POST':
         body = json.loads(request.body)
         skill = body.get('skill')
@@ -79,7 +82,7 @@ def graph_extend(request):
     jobs = request.session.pop('jobs', None)
     return render(request, 'graph/graph-extend.html', {'skill': skill, 'jobs': jobs})
 
-def graph_editable(request):
+def graph_editable(request): # display job-skill graph that can editable
     if request.method == 'POST':
         body = json.loads(request.body)
         form = JobForm(body)
@@ -95,7 +98,7 @@ def graph_editable(request):
     skills = request.session.pop('skills', None)
     return render(request, 'graph/graph-editable.html', {'job_name': job, 'skills': skills})
 
-def add_to_database(request):
+def add_to_database(request): # add data api
     if request.method == 'POST':
         body = json.loads(request.body)
         job = body.get('job_name')
@@ -110,7 +113,7 @@ def add_to_database(request):
     skills = request.session.pop('skills', None)
     return render(request, 'graph/graph-editable.html', {'job_name': job, 'skills': skills})
 
-def delete_from_database(request):
+def delete_from_database(request): # delete data api
     if request.method == 'POST':
         body = json.loads(request.body)
         job = body.get('job_name')
@@ -125,4 +128,27 @@ def delete_from_database(request):
     skills = request.session.pop('skills', None)
     return render(request, 'graph/graph-editable.html', {'job_name': job, 'skills': skills})
 
+def dump_neo4j_db(request): # dump Neo4j DB
+    if request.method == "POST":
+        try:
+            dump_path = "/var/lib/neo4j/backups/neo4j.dump"
+            command = [
+                "sudo", "-u", "neo4j", "neo4j-admin", "database", "dump",
+                "--overwrite-destination=true", "--to-path=/var/lib/neo4j/backups/", "neo4j"
+            ]
+            
+            result = subprocess.run(command, capture_output=True, text=True)
+
+            if result.returncode == 0:
+                if os.path.exists(dump_path):
+                    return JsonResponse({'status': 'success', 'file_url': '/download_neo4j_dump/'})
+                else:
+                    return JsonResponse({'status': 'error', 'message': 'Dump file not found'})
+            else:
+                return JsonResponse({'status': 'error', 'message': result.stderr})
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+
+    return JsonResponse({'status': 'invalid_method'}, status=405)
 

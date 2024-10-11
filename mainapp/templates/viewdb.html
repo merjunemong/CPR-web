@@ -58,6 +58,9 @@
                         <button type="submit" class="btn btn-primary" onclick="jobSearch()">검색</button>
                     </div>
                 </div>
+                <label for="dumpButton" class="form-label">전체 그래프DB 다운받기</label>
+                <button id="dumpButton">Download</button>
+                <div class="fs-3 fw-light text-muted">neo4j에서 사용 가능한 .dump 파일을 다운받습니다</div>
             </div>
         </main>
         <!-- Footer-->
@@ -100,6 +103,27 @@
                     alert("직업명을 입력해주세요");
                 }
             }
+
+            //다운로드 API 요청
+            document.getElementById("dumpButton").addEventListener("click", function() {
+                fetch("/dump_neo4j_db/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        window.location.href = data.file_url;
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            });            
         </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
