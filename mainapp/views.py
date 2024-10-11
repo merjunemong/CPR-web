@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, FileResponse
 from django.core.files.storage import FileSystemStorage
+from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 from .functions.resume_to_skills import getSkillsFromResume
 from .functions.CPR_GraphDB import *
@@ -128,6 +129,7 @@ def delete_from_database(request): # delete data api
     skills = request.session.pop('skills', None)
     return render(request, 'graph/graph-editable.html', {'job_name': job, 'skills': skills})
 
+@csrf_exempt
 def dump_neo4j_db(request): # dump Neo4j DB
     if request.method == "POST":
         try:
