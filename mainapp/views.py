@@ -154,3 +154,12 @@ def dump_neo4j_db(request): # dump Neo4j DB
 
     return JsonResponse({'status': 'invalid_method'}, status=405)
 
+def download_neo4j_dump(request): # download dump file
+    file_path = "/var/lib/neo4j/backups/neo4j.dump"
+    if os.path.exists(file_path):
+        response = FileResponse(open(file_path, 'rb'))
+        response['Content-Disposition'] = 'attachment; filename="neo4j.dump"'
+        return response
+    else:
+        return JsonResponse({'status': 'error', 'message': 'File not found'})
+
