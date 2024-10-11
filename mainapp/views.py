@@ -132,6 +132,7 @@ def delete_from_database(request): # delete data api
 @csrf_exempt
 def dump_neo4j_db(request): # dump Neo4j DB
     if request.method == "POST":
+        print(1)
         try:
             dump_path = "/var/lib/neo4j/backups/neo4j.dump"
             command = [
@@ -140,9 +141,11 @@ def dump_neo4j_db(request): # dump Neo4j DB
             ]
             
             result = subprocess.run(command, capture_output=True, text=True)
+            print(2)
 
             if result.returncode == 0:
                 if os.path.exists(dump_path):
+                    print(3)
                     return JsonResponse({'status': 'success', 'file_url': '/download_neo4j_dump/'})
                 else:
                     return JsonResponse({'status': 'error', 'message': 'Dump file not found'})
@@ -156,8 +159,10 @@ def dump_neo4j_db(request): # dump Neo4j DB
 
 def download_neo4j_dump(request): # download dump file
     file_path = "/var/lib/neo4j/backups/neo4j.dump"
+    print(4)
     if os.path.exists(file_path):
         response = FileResponse(open(file_path, 'rb'))
+        print(5)
         response['Content-Disposition'] = 'attachment; filename="neo4j.dump"'
         return response
     else:
