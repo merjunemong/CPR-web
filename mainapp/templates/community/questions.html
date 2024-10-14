@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>질문지 작성</title>
+        <!-- D3.js-->
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <style>
+            textarea {
+                width: 100%;
+                height: 100px;
+                margin-bottom: 20px;
+            }
+            .question {
+                margin-bottom: 20px;
+            }
+            .question label {
+                display: block;
+                font-weight: bold;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">CPR</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Projects Section-->
+            <div class="container px-5 my-5">
+                <h1>나는 어떤 사람일까?</h1>
+
+                <form id="qaForm">
+                    <div class="question">
+                        <label for="question1">Q1. 도전해보고 싶은 일은?</label>
+                        <textarea id="question1" name="answer1"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question2">Q2. 쉽게 포기하지 않는 일은?</label>
+                        <textarea id="question2" name="answer2"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question3">Q3. 존경하거나 되고싶은 인물은?</label>
+                        <textarea id="question3" name="answer3"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question4">Q4. 스스로 자랑스럽게 느껴지는 일은?</label>
+                        <textarea id="question4" name="answer4"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question5">Q5. 어떤 사람이 되고싶은가?</label>
+                        <textarea id="question5" name="answer5"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question6">Q6. 어떤 분야에 돈을 가장 많이 쓰는가?</label>
+                        <textarea id="question6" name="answer6"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question7">Q7. 남들에게 지독하다, 또는 대단하다 칭찬 들은 일이 있는가?</label>
+                        <textarea id="question7" name="answer7"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question8">Q8. 오랜 시간 계속 하고 있는 일이 있다면?</label>
+                        <textarea id="question8" name="answer8"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question9">Q9. 내가 해도 남보다 잘하겠다 싶은 일은?</label>
+                        <textarea id="question9" name="answer9"></textarea>
+                    </div>
+                    <div class="question">
+                        <label for="question10">Q10. 기꺼이 밤새울 수 있는 일은?</label>
+                        <textarea id="question10" name="answer10"></textarea>
+                    </div>
+
+                    <button type="submit">전송</button>
+                    <button class="mx-3" id="backButton" style="background-color: #f44336;">뒤로가기</button>
+                </form>
+
+                <div id="statusMessage"></div>
+            </div>
+
+            <script>
+                document.getElementById('qaForm').addEventListener('submit', function(e) {
+                    e.preventDefault(); // 폼의 기본 전송 동작 방지
+
+                    let formData = new FormData(this);
+                    let formDataObj = {};
+                    
+                    formData.forEach((value, key) => {
+                        formDataObj[key] = value;
+                    });
+
+                    fetch('/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formDataObj),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('statusMessage').innerHTML = '저장 성공!';
+                    })
+                    .catch(error => {
+                        document.getElementById('statusMessage').innerHTML = '저장 실패!';
+                        console.error('Error:', error);
+                    });
+                });
+
+                // 이전 페이지로 이동
+                document.getElementById('backButton').addEventListener('click', function() {
+                    window.history.back();
+                });                
+            </script>
+            </section>
+            <!-- Call to action section-->
+            <section class="py-5 bg-gradient-primary-to-secondary text-white">
+                <div class="container px-5 my-5">
+                    <div class="text-center">
+                        <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contact me</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        {% load static %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

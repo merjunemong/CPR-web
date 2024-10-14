@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>커뮤니티 게시판 - 게시글 상세</title>
+        <!-- D3.js-->
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <style>
+          form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+          }
+          input[type="text"],
+          textarea {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+          }
+          #content {
+            height: 300px;
+          }
+
+          button {
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          button:hover {
+            background-color: #218838;
+          }
+          .post-container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .button {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+          }
+          .button:hover {
+            background-color: #0056b3;
+          }
+          .actions-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+          }
+          
+          .recommend-section,
+          .post-actions {
+            display: flex;
+            align-items: center;
+          }
+          
+          .recommend-section button,
+          .post-actions a,
+          .post-actions button {
+            margin-right: 10px;
+          }
+          
+          .edit-button {
+            background-color: #ffc107;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .delete-button {
+            background-color: #dc3545; /* 삭제 버튼과 동일한 빨간색 */
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .edit-button:hover {
+            background-color: #e0a800;
+          }
+          
+          .delete-button:hover {
+            background-color: #c82333;
+          }
+          
+          /* 추천, 비추천 버튼 스타일 */
+          .recommend-button {
+            background-color: #28a745;
+            color: white;
+          }
+          
+          .recommend-button:hover {
+            background-color: #218838;
+          }
+          
+          .not-recommend-button {
+            background-color: #dc3545;
+            color: white;
+          }
+          
+          .not-recommend-button:hover {
+            background-color: #c82333;
+          }
+          
+          /* 댓글 스타일 */
+          .comment {
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
+            position: relative;
+          }
+          
+          .comment-content {
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .comment p {
+            margin-bottom: 5px;
+            font-size: 15px;
+            color: #555;
+          }
+          
+          .comment small {
+            color: #999;
+          }
+          
+          .comment-actions-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+          }
+          
+          .comment-recommend-section,
+          .comment-actions {
+            display: flex;
+            align-items: center;
+          }
+          
+          .comment-recommend-section button,
+          .comment-actions button {
+            margin-right: 10px;
+          }
+          
+          .edit-comment-button {
+            background-color: #ffc107;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .delete-comment-button {
+            background-color: #dc3545; /* 삭제 버튼과 동일한 빨간색 */
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .edit-comment-button:hover {
+            background-color: #ffc107;
+          }
+          
+          .delete-comment-button:hover {
+            background-color: #c82333;
+          }
+          
+          /* 댓글 추천 버튼 스타일 */
+          .comment-recommend-button {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .comment-recommend-button:hover {
+            background-color: #218838;
+          }
+          
+          .comment-not-recommend-button {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .comment-not-recommend-button:hover {
+            background-color: #c82333;
+          }
+          
+          .comment-recommend-count,
+          .comment-not-recommend-count {
+            margin-left: 5px;
+            font-weight: bold;
+          }
+        </style>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">CPR</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Projects Section-->
+            <div class="container px-5 my-5">
+              <div class="post-container">
+                <h1 id="postTitle"></h1>
+                <p id="postContent"></p>
+                <small id="postDate"></small>
+          
+                <!-- 추천, 비추천 버튼과 수정, 삭제 버튼을 같은 줄에 배치 -->
+                <div class="actions-container">
+                  <div class="recommend-section">
+                    <button id="recommendButton" class="recommend-button">
+                      추천 (<span id="recommendCount">0</span>)
+                    </button>
+                    <button id="notRecommendButton" class="not-recommend-button">
+                      비추천 (<span id="notRecommendCount">0</span>)
+                    </button>
+                  </div>
+                  <div class="post-actions">
+                    <a href="/community/create/?edit=" id="editButton" class="edit-button"
+                      >수정</a
+                    >
+                    <button id="deleteButton" class="delete-button">삭제</button>
+                  </div>
+                </div>
+          
+                <hr />
+                <h2>댓글</h2>
+                <div id="comments"></div>
+                <form id="commentForm">
+                  <textarea
+                    id="commentContent"
+                    placeholder="댓글을 작성하세요"
+                    required
+                  ></textarea>
+                  <button type="submit">댓글 달기</button>
+                </form>
+                <a href="/community/" class="button">홈으로 돌아가기</a>
+              </div>
+            </div>
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const postId = new URLSearchParams(window.location.search).get("postId");
+                const posts = JSON.parse(localStorage.getItem("posts")) || [];
+                const post = posts[postId];
+              
+                const postTitle = document.getElementById("postTitle");
+                const postContent = document.getElementById("postContent");
+                const postDate = document.getElementById("postDate");
+                const editButton = document.getElementById("editButton");
+                const deleteButton = document.getElementById("deleteButton");
+                const commentsDiv = document.getElementById("comments");
+                const commentForm = document.getElementById("commentForm");
+                const commentContent = document.getElementById("commentContent");
+                const recommendButton = document.getElementById("recommendButton");
+                const notRecommendButton = document.getElementById("notRecommendButton");
+                const recommendCount = document.getElementById("recommendCount");
+                const notRecommendCount = document.getElementById("notRecommendCount");
+              
+                if (post) {
+                  postTitle.innerText = post.title;
+                  postContent.innerText = post.content;
+                  postDate.innerText = post.date;
+              
+                  // 추천 및 비추천 수 표시
+                  recommendCount.innerText = post.recommend;
+                  notRecommendCount.innerText = post.notRecommend;
+              
+                  // 수정 버튼 링크 설정
+                  editButton.href = `/community/create/?edit=${postId}`;
+              
+                  // 삭제 버튼 이벤트
+                  deleteButton.addEventListener("click", () => {
+                    if (confirm("정말 게시글을 삭제하시겠습니까?")) {
+                      deletePost(postId);
+                    }
+                  });
+              
+                  // 추천 버튼 이벤트
+                  recommendButton.addEventListener("click", () => {
+                    post.recommend += 1;
+                    recommendCount.innerText = post.recommend;
+                    savePosts();
+                  });
+              
+                  // 비추천 버튼 이벤트
+                  notRecommendButton.addEventListener("click", () => {
+                    post.notRecommend += 1;
+                    notRecommendCount.innerText = post.notRecommend;
+                    savePosts();
+                  });
+              
+                  // 댓글 로드
+                  loadComments(post.comments);
+                } else {
+                  document.body.innerHTML = "<p>게시글을 찾을 수 없습니다.</p>";
+                }
+              
+                // 댓글 작성 이벤트
+                commentForm.addEventListener("submit", (e) => {
+                  e.preventDefault();
+              
+                  const commentText = commentContent.value.trim();
+                  if (commentText === "") {
+                    alert("댓글 내용을 입력해주세요.");
+                    return;
+                  }
+              
+                  const comment = {
+                    content: commentText,
+                    date: new Date().toLocaleString(),
+                    recommend: 0,
+                    notRecommend: 0,
+                  };
+              
+                  addComment(postId, comment);
+                  commentContent.value = "";
+                });
+              
+                function deletePost(id) {
+                  posts.splice(id, 1);
+                  localStorage.setItem("posts", JSON.stringify(posts));
+                  window.location.href = "community/";
+                }
+              
+                function loadComments(comments) {
+                  if (!comments || comments.length === 0) {
+                    commentsDiv.innerHTML = "<p>등록된 댓글이 없습니다.</p>";
+                    return;
+                  }
+                  commentsDiv.innerHTML = "";
+                  comments.forEach((comment, index) => {
+                    const commentDiv = document.createElement("div");
+                    commentDiv.classList.add("comment");
+                    commentDiv.innerHTML = `
+                            <div class="comment-content">
+                                <p>${comment.content}</p>
+                                <small>${comment.date}</small>
+                            </div>
+                            <div class="comment-actions-container">
+                                <div class="comment-recommend-section">
+                                    <button class="comment-recommend-button" data-index="${index}">추천 (<span class="comment-recommend-count">${comment.recommend}</span>)</button>
+                                    <button class="comment-not-recommend-button" data-index="${index}">비추천 (<span class="comment-not-recommend-count">${comment.notRecommend}</span>)</button>
+                                </div>
+                                <div class="comment-actions">
+                                    <button class="edit-comment-button" data-index="${index}">수정</button>
+                                    <button class="delete-comment-button" data-index="${index}">삭제</button>
+                                </div>
+                            </div>
+                            <hr>
+                        `;
+                    commentsDiv.appendChild(commentDiv);
+                  });
+              
+                  // 댓글 삭제 이벤트 리스너
+                  const deleteCommentButtons = document.querySelectorAll(
+                    ".delete-comment-button"
+                  );
+                  deleteCommentButtons.forEach((button) => {
+                    button.addEventListener("click", (e) => {
+                      const index = e.target.getAttribute("data-index");
+                      deleteComment(index);
+                    });
+                  });
+              
+                  // 댓글 수정 이벤트 리스너
+                  const editCommentButtons = document.querySelectorAll(
+                    ".edit-comment-button"
+                  );
+                  editCommentButtons.forEach((button) => {
+                    button.addEventListener("click", (e) => {
+                      const index = e.target.getAttribute("data-index");
+                      editComment(index);
+                    });
+                  });
+              
+                  // 댓글 추천 버튼 이벤트 리스너
+                  const commentRecommendButtons = document.querySelectorAll(
+                    ".comment-recommend-button"
+                  );
+                  commentRecommendButtons.forEach((button) => {
+                    button.addEventListener("click", (e) => {
+                      const index = e.target.getAttribute("data-index");
+                      recommendComment(index);
+                    });
+                  });
+              
+                  // 댓글 비추천 버튼 이벤트 리스너
+                  const commentNotRecommendButtons = document.querySelectorAll(
+                    ".comment-not-recommend-button"
+                  );
+                  commentNotRecommendButtons.forEach((button) => {
+                    button.addEventListener("click", (e) => {
+                      const index = e.target.getAttribute("data-index");
+                      notRecommendComment(index);
+                    });
+                  });
+                }
+              
+                function addComment(id, comment) {
+                  posts[id].comments.push(comment);
+                  localStorage.setItem("posts", JSON.stringify(posts));
+                  loadComments(posts[id].comments);
+                }
+              
+                function deleteComment(index) {
+                  if (confirm("정말 댓글을 삭제하시겠습니까?")) {
+                    post.comments.splice(index, 1);
+                    savePosts();
+                    loadComments(post.comments);
+                  }
+                }
+              
+                function editComment(index) {
+                  const newContent = prompt(
+                    "새로운 댓글 내용을 입력하세요:",
+                    post.comments[index].content
+                  );
+                  if (newContent !== null) {
+                    const trimmedContent = newContent.trim();
+                    if (trimmedContent === "") {
+                      alert("댓글 내용은 비워둘 수 없습니다.");
+                      return;
+                    }
+                    post.comments[index].content = trimmedContent;
+                    savePosts();
+                    loadComments(post.comments);
+                  }
+                }
+              
+                function recommendComment(index) {
+                  post.comments[index].recommend += 1;
+                  savePosts();
+                  loadComments(post.comments);
+                }
+              
+                function notRecommendComment(index) {
+                  post.comments[index].notRecommend += 1;
+                  savePosts();
+                  loadComments(post.comments);
+                }
+              
+                function savePosts() {
+                  localStorage.setItem("posts", JSON.stringify(posts));
+                }
+              });
+            </script>
+            </section>
+            <!-- Call to action section-->
+            <section class="py-5 bg-gradient-primary-to-secondary text-white">
+                <div class="container px-5 my-5">
+                    <div class="text-center">
+                        <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact/">Contact me</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        {% load static %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>
