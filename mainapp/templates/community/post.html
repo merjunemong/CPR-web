@@ -262,6 +262,7 @@
                             <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
                             <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
                             <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/SelfDiscovery/">SelfDiscovery</a></li>
                             <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
                         </ul>
                     </div>
@@ -309,7 +310,7 @@
             <script>
               document.addEventListener("DOMContentLoaded", () => {
                 const postId = new URLSearchParams(window.location.search).get("postId");
-                const posts = JSON.parse(localStorage.getItem("posts")) || [];
+                const posts = JSON.parse(sessionStorage.getItem("posts")) || [];
                 const post = posts[postId];
               
                 const postTitle = document.getElementById("postTitle");
@@ -387,8 +388,8 @@
               
                 function deletePost(id) {
                   posts.splice(id, 1);
-                  localStorage.setItem("posts", JSON.stringify(posts));
-                  window.location.href = "community/";
+                  sessionStorage.setItem("posts", JSON.stringify(posts));
+                  window.location.href = "/community/";
                 }
               
                 function loadComments(comments) {
@@ -467,7 +468,7 @@
               
                 function addComment(id, comment) {
                   posts[id].comments.push(comment);
-                  localStorage.setItem("posts", JSON.stringify(posts));
+                  sessionStorage.setItem("posts", JSON.stringify(posts));
                   loadComments(posts[id].comments);
                 }
               
@@ -509,7 +510,7 @@
                 }
               
                 function savePosts() {
-                  localStorage.setItem("posts", JSON.stringify(posts));
+                  sessionStorage.setItem("posts", JSON.stringify(posts));
                 }
               });
             </script>

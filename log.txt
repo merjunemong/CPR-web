@@ -653,3 +653,56 @@ django.template.exceptions.TemplateDoesNotExist: community/questions.html
 2024-10-14 14:44:25,328 - INFO - Watching for file changes with StatReloader
 2024-10-14 14:46:15,246 - WARNING - Not Found: /community/post/community/
 2024-10-14 14:48:33,860 - WARNING - Not Found: /community/qestion
+2024-10-14 22:45:32,535 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 22:45:32,537 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 22:45:32,537 - INFO - Scheduler started
+2024-10-14 22:45:34,250 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 22:45:34,250 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 22:45:34,250 - INFO - Scheduler started
+2024-10-14 22:45:34,268 - INFO - Watching for file changes with StatReloader
+2024-10-14 22:46:54,266 - WARNING - Not Found: /community/post/community/
+2024-10-14 22:47:04,503 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 22:47:04,503 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 22:47:04,503 - INFO - Scheduler started
+2024-10-14 22:47:06,623 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 22:47:06,623 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 22:47:06,623 - INFO - Scheduler started
+2024-10-14 22:47:06,641 - INFO - Watching for file changes with StatReloader
+2024-10-14 22:59:13,932 - WARNING - Not Found: /assets/cpr.jpg
+2024-10-14 23:00:46,318 - WARNING - Not Found: /assets/cpr.png
+2024-10-14 23:00:47,552 - WARNING - Not Found: /assets/cpr.png
+2024-10-14 23:01:04,396 - WARNING - Not Found: /assets/cpr.png
+2024-10-14 23:01:10,063 - WARNING - Not Found: /assets/cpr.png
+2024-10-14 23:10:19,640 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\urls.py changed, reloading.
+2024-10-14 23:10:22,222 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 23:10:22,222 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 23:10:22,222 - INFO - Scheduler started
+2024-10-14 23:10:22,243 - INFO - Watching for file changes with StatReloader
+2024-10-14 23:10:33,148 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-14 23:10:35,283 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 23:10:35,285 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 23:10:35,285 - INFO - Scheduler started
+2024-10-14 23:10:35,308 - INFO - Watching for file changes with StatReloader
+2024-10-14 23:10:40,758 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-14 23:10:42,900 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 23:10:42,900 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 23:10:42,900 - INFO - Scheduler started
+2024-10-14 23:10:42,918 - INFO - Watching for file changes with StatReloader
+2024-10-14 23:15:44,106 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-14 23:15:46,344 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 23:15:46,344 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 23:15:46,344 - INFO - Scheduler started
+2024-10-14 23:15:46,370 - INFO - Watching for file changes with StatReloader
+2024-10-14 23:15:54,007 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\urls.py changed, reloading.
+2024-10-14 23:15:56,297 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 23:15:56,298 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 23:15:56,298 - INFO - Scheduler started
+2024-10-14 23:15:56,316 - INFO - Watching for file changes with StatReloader
+2024-10-14 23:16:05,506 - WARNING - Not Found: /SelfDiscovery/
+2024-10-14 23:16:20,780 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\urls.py changed, reloading.
+2024-10-14 23:16:22,824 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-14 23:16:22,824 - INFO - Added job "backup_data" to job store "default"
+2024-10-14 23:16:22,824 - INFO - Scheduler started
+2024-10-14 23:16:22,842 - INFO - Watching for file changes with StatReloader
+2024-10-14 23:16:23,141 - WARNING - Not Found: /SelfDiscovery/assets/favicon.ico
+2024-10-14 23:20:13,877 - WARNING - Not Found: /community/post/community/

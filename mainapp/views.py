@@ -58,8 +58,8 @@ def viewdb(request): # graphDB edit page
 def community(request): # community page
     return render(request, 'community/community.html')
 
-def community_question(request): # community question page
-    return render(request, 'community/questions.html')
+def SelfDiscovery(request): # SelfDiscovery page
+    return render(request, 'SelfDiscovery.html')
 
 def community_create(request): # community create page
     return render(request, 'community/create.html')

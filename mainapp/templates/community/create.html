@@ -262,6 +262,7 @@
                             <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
                             <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
                             <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/SelfDiscovery/">SelfDiscovery</a></li>
                             <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
                         </ul>
                     </div>
@@ -291,7 +292,7 @@
                 const editPostId = queryParams.get("edit");
               
                 if (editPostId !== null) {
-                  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+                  const posts = JSON.parse(sessionStorage.getItem("posts")) || [];
                   const post = posts[editPostId];
                   if (post) {
                     titleInput.value = post.title;
@@ -334,18 +335,18 @@
                 });
               
                 function savePost(post) {
-                  let posts = JSON.parse(localStorage.getItem("posts")) || [];
+                  let posts = JSON.parse(sessionStorage.getItem("posts")) || [];
                   posts.push(post);
-                  localStorage.setItem("posts", JSON.stringify(posts));
+                  sessionStorage.setItem("posts", JSON.stringify(posts));
                 }
               
                 function updatePost(index, updatedPost) {
-                  let posts = JSON.parse(localStorage.getItem("posts")) || [];
+                  let posts = JSON.parse(sessionStorage.getItem("posts")) || [];
                   posts[index] = {
                     ...posts[index], // 기존 댓글 및 추천 유지
                     ...updatedPost,
                   };
-                  localStorage.setItem("posts", JSON.stringify(posts));
+                  sessionStorage.setItem("posts", JSON.stringify(posts));
                 }
               });      
             </script>
