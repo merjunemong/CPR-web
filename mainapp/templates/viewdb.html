@@ -30,7 +30,6 @@
                             <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
                             <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
                             <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/SelfDiscovery/">SelfDiscovery</a></li>
                             <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
                         </ul>
                     </div>
@@ -44,7 +43,7 @@
                 <!-- 검색 기능 -->
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-6">
-                        <h2 class="text-primary fw-bolder mb-4">검색</h2>
+                        <h4 class="fw-bolder mb-4">직업을 검색하고 관련 역량을 추가 및 삭제할 수 있습니다</h4>
 
                         <!-- 직업과 스킬 선택 -->
                         <!-- 주석: 여기서는 사용자가 직업이나 스킬을 선택한 후 검색할 수 있는 기능을 제공 -->
@@ -57,13 +56,6 @@
 
                         <!-- 직업 검색 버튼 -->
                         <button type="submit" class="btn btn-primary" onclick="jobSearch()">검색</button>
-                    </div>
-                    <div class="fs-5 fw-light text-muted mt-5">
-                        <label for="dumpButton" class="form-label">전체 그래프DB 다운받기</label>
-                        <button class="btn btn-outline-dark mx-2" id="dumpButton">Download</button>
-                    </div>
-                    <div class="fw-light text-muted">
-                        <span class="fs-6">neo4j에서 사용 가능한 .dump 파일을 다운받습니다</span>
                     </div>
                 </div>
             </div>
@@ -108,39 +100,6 @@
                     alert("직업명을 입력해주세요");
                 }
             }
-
-            //다운로드 API 요청
-            document.getElementById("dumpButton").addEventListener("click", function() {
-                fetch("/dump_neo4j_db/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        const fileName = response.headers.get("Content-Disposition").split("filename=")[1];  // 서버로부터 파일명 가져오기
-                        return response.blob().then(blob => ({ blob, fileName }));  // blob과 파일명을 함께 반환
-                    } else {
-                        throw new Error("Error: " + response.statusText);
-                    }
-                })
-                .then(({ blob, fileName }) => {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = fileName || 'neo4j_dump_file.dump';  // 서버에서 받은 파일명으로 다운로드
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("Download failed.");
-                });
-            });
-            
         </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

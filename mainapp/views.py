@@ -4,6 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 from .functions.resume_to_skills import getSkillsFromResume
+from .functions.answers_to_skills import getSkillsFromAnswers
 from .functions.CPR_GraphDB import *
 import json
 import subprocess
@@ -19,23 +20,35 @@ def contact(request): # contact page
     return render(request, 'contact.html')
 
 def resume(request): # CPR project page
+    form = UploadFileForm(request.POST, request.FILES)
+
     if request.method == 'POST':
         action = request.POST.get('action')
-        if action == 'uploadPDF':
-            form = UploadFileForm(request.POST, request.FILES)
-            if form.is_valid():
+        if action == 'requestAPI':
+            skills = []
+            if 'file' in request.FILES:
                 uploaded_file = request.FILES['file']
                 fs = FileSystemStorage()
                 filename = fs.save(uploaded_file.name, uploaded_file)
                 file_url = fs.url(filename)
+                request.session['uploaded_file_name'] = uploaded_file.name
+                skills = getSkillsFromResume(fs.path(filename) if file_url else None)
 
-                skills = getSkillsFromResume(fs.path(filename))
-                request.session['skills'] = skills
+            answers = [request.POST.get(f'answer{i}', None) for i in range(1, 11)]
+            if not all(answer is None for answer in answers):
+                skills = skills + getSkillsFromAnswers(answers)
+
+
+            request.session['skills'] = skills
+            request.session['answers'] = answers
+
             return redirect('resume')
     else:
         form = UploadFileForm()
-    skills = request.session.pop('skills', None)
-    return render(request, 'resume.html', {'form':form, 'skills':skills})
+        skills = request.session.pop('skills', None)
+        answers = request.session.pop('answers', ['']*10)
+
+    return render(request, 'resume.html', {'form': form, 'skills': skills, 'answers': answers})
 
 def resume_result(request): # CPR project result output page
     if request.method == 'POST':
@@ -57,9 +70,6 @@ def viewdb(request): # graphDB edit page
 
 def community(request): # community page
     return render(request, 'community/community.html')
-
-def SelfDiscovery(request): # SelfDiscovery page
-    return render(request, 'SelfDiscovery.html')
 
 def community_create(request): # community create page
     return render(request, 'community/create.html')
@@ -141,64 +151,3 @@ def delete_from_database(request): # delete data api
     job = request.session.pop('job_name', None)
     skills = request.session.pop('skills', None)
     return render(request, 'graph/graph-editable.html', {'job_name': job, 'skills': skills})
-
-@csrf_exempt
-def dump_neo4j_db(request): # dump Neo4j DB
-    if request.method == "POST":
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        dump_folder_path = base_dir  # 'neo4j_dump_db' 파일이 저장된 디렉토리 경로 설정
-
-        # dump_로 시작하는 가장 최근의 .dump 파일을 찾음
-        dump_files = glob.glob(os.path.join(dump_folder_path, 'dump_*.dump'))
-        
-        if dump_files:
-            # 가장 최근에 생성된 dump 파일을 선택
-            latest_dump_file = max(dump_files, key=os.path.getctime)
-            file_name = os.path.basename(latest_dump_file)  # 파일명 추출
-
-            response = FileResponse(open(latest_dump_file, 'rb'))
-            response['Content-Disposition'] = f'attachment; filename="{file_name}"'
-            return response
-        else:
-            return JsonResponse({"status": "error", "message": "No dump file found."}, status=404)
-
-    return JsonResponse({"status": "error", "message": "Invalid request method."}, status=405)
-# Error
-# @csrf_exempt
-# def dump_neo4j_db(request): # dump Neo4j DB
-#     if request.method == "POST":
-#         try:
-#             dump_path = "/var/lib/neo4j/backups/neo4j.dump"
-#             from django.conf import settings
-#             dump_file_path = os.path.join(settings.BASE_DIR, 'neo4j.dump')
-#             command = [
-#                 'C:\\Program Files\\Neo4j Desktop\\resources\\offline\\neo4j\\neo4j-enterprise-5.12.0-windows.zip\\neo4j-enterprise-5.12.0\\bin\\neo4j-admin.bat',
-#                 'dump',
-#                 '--database=neo4j',
-#                 f'--to={dump_file_path}'  # .dump 파일로 지정
-#             ]
-            
-#             result = subprocess.run(command, capture_output=True, text=True)
-
-#             if result.returncode == 0:
-#                 if os.path.exists(dump_path):
-#                     return JsonResponse({'status': 'success', 'file_url': '/download_neo4j_dump/'})
-#                 else:
-#                     return JsonResponse({'status': 'error', 'message': 'Dump file not found'})
-#             else:
-#                 return JsonResponse({'status': 'error', 'message': result.stderr})
-
-#         except Exception as e:
-#             return JsonResponse({'status': 'error', 'message': str(e)})
-
-#     return JsonResponse({'status': 'invalid_method'}, status=405)
-
-# def download_neo4j_dump(request): # download dump file
-#     file_path = "/var/lib/neo4j/backups/neo4j.dump"
-#     if os.path.exists(file_path):
-#         response = FileResponse(open(file_path, 'rb'))
-#         response['Content-Disposition'] = 'attachment; filename="neo4j.dump"'
-#         return response
-#     else:
-#         return JsonResponse({'status': 'error', 'message': 'File not found'})
-

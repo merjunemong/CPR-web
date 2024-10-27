@@ -34,88 +34,145 @@
             }
         </style>
     </head>
-    <body>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">CPR</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Projects Section-->
+            <section class="py-5">
 
-        <!-- 선택된 스킬명 -->
-        <div class="display-5 fw-bolder mt-3" align="center">{{ skill }} 관련 직업</div>
+                <!-- 선택된 스킬명 -->
+                <div class="display-5 fw-bolder my-3" align="center">{{ skill }} 관련 직업</div>
 
-        <!-- D3.js 그래프 -->
-        <svg id="jobGraph" width="800" height="500"></svg>
+                <!-- D3.js 그래프 -->
+                <svg id="jobGraph" width="800" height="500"></svg>
 
-        <!-- 뒤로가기 버튼 -->
-        <div class="btn-container mt-5 mx-3">
-            <button class="btn btn-outline-info fw-bolder" onclick="goBack()">뒤로 가기</button>
-        </div>
+                <!-- 뒤로가기 버튼 -->
+                <div class="btn-container mt-5 mx-3">
+                    <button class="btn btn-outline-info fw-bolder" onclick="goBack()">뒤로 가기</button>
+                </div>
 
-        <script>
+                <script>
 
-            function goBack() {
-                window.history.back();
-            }
+                    function goBack() {
+                        window.history.back();
+                    }
 
-            const jobs = {{ jobs|safe }};  // 서버에서 받아온 관련 직업 리스트
-            const skill = "{{ skill|safe }}";
+                    const jobs = {{ jobs|safe }};  // 서버에서 받아온 관련 직업 리스트
+                    const skill = "{{ skill|safe }}";
 
-            const data = {
-                nodes: [
-                    { id: skill, group: 1 },
-                    ...jobs.map(job => ({ id: job, group: 2 }))
-                ],
-                links: jobs.map(job => ({ source: skill, target: job }))
-            };
+                    const data = {
+                        nodes: [
+                            { id: skill, group: 1 },
+                            ...jobs.map(job => ({ id: job, group: 2 }))
+                        ],
+                        links: jobs.map(job => ({ source: skill, target: job }))
+                    };
 
-            const svg = d3.select("#jobGraph");
-            const width = +svg.attr("width");
-            const height = +svg.attr("height");
+                    const svg = d3.select("#jobGraph");
+                    const width = +svg.attr("width");
+                    const height = +svg.attr("height");
 
-            const simulation = d3.forceSimulation(data.nodes)
-                .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
-                .force("charge", d3.forceManyBody().strength(-500))
-                .force("center", d3.forceCenter(width / 2, height / 2));
+                    const simulation = d3.forceSimulation(data.nodes)
+                        .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
+                        .force("charge", d3.forceManyBody().strength(-500))
+                        .force("center", d3.forceCenter(width / 2, height / 2));
 
-            const link = svg.append("g")
-                .attr("class", "links")
-                .selectAll("line")
-                .data(data.links)
-                .enter().append("line")
-                .attr("class", "link")
-                .attr("stroke-width", 2);
+                    const link = svg.append("g")
+                        .attr("class", "links")
+                        .selectAll("line")
+                        .data(data.links)
+                        .enter().append("line")
+                        .attr("class", "link")
+                        .attr("stroke-width", 2);
 
-            const node = svg.append("g")
-                .attr("class", "nodes")
-                .selectAll("circle")
-                .data(data.nodes)
-                .enter().append("circle")
-                .attr("class", "node")
-                .attr("r", 15)
-                .attr("fill", d => d.group === 1 ? "red" : "blue");
+                    const node = svg.append("g")
+                        .attr("class", "nodes")
+                        .selectAll("circle")
+                        .data(data.nodes)
+                        .enter().append("circle")
+                        .attr("class", "node")
+                        .attr("r", 15)
+                        .attr("fill", d => d.group === 1 ? "red" : "blue");
 
-            const text = svg.append("g")
-                .attr("class", "texts")
-                .selectAll("text")
-                .data(data.nodes)
-                .enter().append("text")
-                .attr("x", 15)
-                .attr("y", 3)
-                .text(d => d.id);
+                    // 텍스트를 일정한 글자 수로 줄바꿈하는 함수
+                    function splitText(text, maxLineLength) {
+                        const words = text.split(" ");
+                        const lines = [];
+                        let line = "";
 
-            simulation.on("tick", () => {
-                link.attr("x1", d => d.source.x)
-                    .attr("y1", d => d.source.y)
-                    .attr("x2", d => d.target.x)
-                    .attr("y2", d => d.target.y);
+                        for (let word of words) {
+                            if ((line + word).length > maxLineLength) {
+                                lines.push(line);
+                                line = word;
+                            } else {
+                                line += (line ? " " : "") + word;
+                            }
+                        }
+                        lines.push(line); // 마지막 줄 추가
+                        return lines;
+                    }
 
-                node.attr("cx", d => d.x)
-                    .attr("cy", d => d.y);
+                    // 텍스트 요소 생성
+                    const text = svg.append("g")
+                        .attr("class", "texts")
+                        .selectAll("text")
+                        .data(data.nodes)
+                        .enter().append("text")
+                        .attr("font-size", "10px")
+                        .attr("font-weight", "bold")
+                        .attr("text-anchor", "middle");
 
-                text.attr("x", d => d.x + 15)
-                    .attr("y", d => d.y + 3);
-            });
-        </script>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        {% load static %}
-        <script src="{% static 'js/scripts.js' %}"></script>
+                    // `tick` 이벤트 내에서 `tspan` 줄바꿈 처리
+                    simulation.on("tick", () => {
+                        link
+                            .attr("x1", d => d.source.x)
+                            .attr("y1", d => d.source.y)
+                            .attr("x2", d => d.target.x)
+                            .attr("y2", d => d.target.y);
+
+                        node
+                            .attr("cx", d => d.x)
+                            .attr("cy", d => d.y);
+
+                        // 텍스트 위치와 줄바꿈 적용
+                        text
+                            .attr("x", d => d.x)
+                            .attr("y", d => d.y - 10) // 노드 중심 위로 살짝 올림
+                            .each(function(d) {
+                                const lines = splitText(d.id, 10); // 각 텍스트를 줄바꿈
+                                d3.select(this).selectAll("tspan").remove(); // 기존 tspan 제거
+                                lines.forEach((line, i) => {
+                                    d3.select(this)
+                                        .append("tspan")
+                                        .attr("x", d.x)
+                                        .attr("dy", i === 0 ? "0em" : "1.2em") // 줄 간격 설정
+                                        .text(line);
+                                });
+                            });
+                    });
+                </script>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-light py-4 mt-auto">
+            <div class="container px-5"><div class="small text-center text-muted">Copyright © Your Website 2024</div></div>
+        </footer>
+        <!-- Bootstrap JS-->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     </body>
 </html>

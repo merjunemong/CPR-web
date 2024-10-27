@@ -28,25 +28,7 @@
                 stroke: #999;
                 stroke-opacity: 0.6;
             }
-            text {
-                font: 15px sans-serif;
-                pointer-events: none;
-            }
-            table {
-                margin-top: 10px;
-                margin-right: 10px;
-                margin-left: 10px;
-                border-collapse: collapse;
-                width: 600px;
-            }
-            table, th, td {
-                border: 1px solid black;
-            }
-            th, td {
-                padding: 8px;
-                text-align: left;
-            }
-            .highlight {
+            td.highlight {
                 background-color: yellow;
             }
             .selected {
@@ -58,6 +40,18 @@
                 text-align: center;
                 margin-top: 20px;
             }
+            .tooltip {
+                position: absolute;
+                display: none;
+                padding: 5px 10px;
+                background-color: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                border-radius: 5px;
+                pointer-events: none;
+                font-size: 12px;
+                transition: opacity 0.2s;
+                z-index: 10;
+            }
             #related-jobs-btn {
                 display: none;
             }
@@ -66,381 +60,476 @@
             }
         </style>
     </head>
-    <body>
-
-        <!-- 직업명 -->
-        <div class="display-5 fw-bolder mt-3" align="center">{{ job_name|safe }}</div>
-
-        <!-- SVG 그래프 -->
-        <div style="float: left;">
-            <svg id="graph" width="800" height="500"></svg>
-            
-            <div class="col-lg-4 col-xl-6 mt-3 mx-3">
-                <!-- 스킬 추가 입력 필드 -->
-                <div class="input-group">
-                    <input type="text" id="new-skill-input" class="form-control" placeholder="추가할 스킬을 입력하세요">
-                    <button class="btn btn-success fw-bolder" id="add-skill-btn">스킬 추가</button>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">CPR</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </nav>
+            <!-- Projects Section-->
+            <section class="py-5">
+                    
+                <!-- 직업명 -->
+                <div class="display-5 fw-bolder my-3" align="center">{{ job_name|safe }}</div>
 
-            <div class="btn-container d-flex">
-                <!-- 선택한 스킬 삭제 버튼 -->
-                <button class="btn btn-outline-success fw-bolder mx-3" id="delete-skill-btn">선택한 스킬 삭제</button>
-                <!-- 관련 직업 확인 버튼 -->
-                <button class="btn btn-info fw-bolder mx-3" id="related-jobs-btn">관련 직업 확인</button>
-                <!-- 뒤로가기 버튼 -->
-                <button class="btn btn-outline-info fw-bolder mx-3" onclick="goBack()">뒤로 가기</button>
-            </div>
+                <!-- SVG 그래프 -->
+                <div style="float: left;">
+                    <svg id="graph" width="750" height="700"></svg>
+                    
+                    <div class="col-lg-4 col-xl-6 mt-3 mx-3">
+                        <!-- 스킬 추가 입력 필드 -->
+                        <div class="input-group">
+                            <input type="text" id="new-skill-input" class="form-control" placeholder="추가할 스킬을 입력하세요">
+                            <button class="btn btn-success fw-bolder" id="add-skill-btn">스킬 추가</button>
+                        </div>
+                    </div>
 
-        </div>
+                    <div class="btn-container d-flex">
+                        <!-- 선택한 스킬 삭제 버튼 -->
+                        <button class="btn btn-outline-success fw-bolder mx-3" id="delete-skill-btn">선택한 스킬 삭제</button>
+                        <!-- 관련 직업 확인 버튼 -->
+                        <button class="btn btn-info fw-bolder mx-3" id="related-jobs-btn">관련 직업 확인</button>
+                        <!-- 뒤로가기 버튼 -->
+                        <button class="btn btn-outline-info fw-bolder mx-3" onclick="goBack()">뒤로 가기</button>
+                    </div>
 
-        <!-- 3열 표 -->
-        <div class="mt-3 mx-3" style="float: right;">
-            <table id="skillsTable">
-                <thead>
-                    <tr>
-                        <th colspan="3">Skills</th>
-                    </tr>
-                </thead>
-                <tbody id="skillsBody">
-                    <!-- 스킬이 여기에 삽입됩니다 -->
-                </tbody>
-            </table>
-        </div>
+                </div>
 
-        <script>
-            let selectedSkill = null; // 선택된 스킬을 저장하는 변수
+                <!-- 3열 표 -->
+                <div class="mt-3 mx-3" style="float: right;">
+                    <table class="table text-center" id="skillsTable">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Skills</th>
+                            </tr>
+                        </thead>
+                        <tbody id="skillsBody">
+                            <!-- 스킬이 여기에 삽입됩니다 -->
+                        </tbody>
+                    </table>
+                </div>
 
-            // CSRF 토큰을 가져오는 함수
-            function getCookie(name) {
-                let cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    const cookies = document.cookie.split(';');
-                    for (let i = 0; i < cookies.length; i++) {
-                        const cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
+                <script>
+                    let selectedSkill = null; // 선택된 스킬을 저장하는 변수
+
+                    // CSRF 토큰을 가져오는 함수
+                    function getCookie(name) {
+                        let cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            const cookies = document.cookie.split(';');
+                            for (let i = 0; i < cookies.length; i++) {
+                                const cookie = cookies[i].trim();
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    function goBack() {
+                        window.history.back();
+                    }
+
+                    const job_name = "{{ job_name|safe }}";
+                    const skills_list = {{ skills|safe }};
+                    console.log('선택된 작업:', job_name, '선택된 skills:', skills_list);
+
+                    const data = {
+                        nodes: [
+                            { id: job_name, group: 1 },
+                            ...skills_list.map(skill => ({ id: skill, group: 2 }))
+                        ],
+                        links: skills_list.map(skill => ({ source: job_name, target: skill }))
+                    };
+
+                    const svg = d3.select("#graph");
+                    const width = +svg.attr("width");
+                    const height = +svg.attr("height");
+
+                    const simulation = d3.forceSimulation(data.nodes)
+                        .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
+                        .force("charge", d3.forceManyBody().strength(-500))
+                        .force("center", d3.forceCenter(width / 2, height / 2));
+
+                    const link = svg.append("g")
+                        .attr("class", "links")
+                        .selectAll("line")
+                        .data(data.links)
+                        .enter().append("line")
+                        .attr("class", "link")
+                        .attr("stroke-width", 2);
+
+                    const tooltip = d3.select("body")
+                        .append("div")
+                        .attr("class", "tooltip");
+                    
+                    const node = svg.append("g")
+                        .attr("class", "nodes")
+                        .selectAll("circle")
+                        .data(data.nodes)
+                        .enter().append("circle")
+                        .attr("class", "node")
+                        .attr("r", 15)
+                        .attr("fill", d => d.group === 1 ? "red" : "blue")
+                        .on("click", (event, d) => {
+                            highlightItem(d.id);
+                            handleSkillClick(d);
+                        })
+                        .on("mouseover", function(event, d) {
+                            tooltip
+                                .html(d.id) // 노드의 id를 툴팁에 설정
+                                .style("left", (event.pageX + 5) + "px") // 마우스 위치 +5px
+                                .style("top", (event.pageY + 5) + "px") // 마우스 위치 +5px
+                                .style("display", "block"); // 툴팁 표시
+                        })
+                        .on("mousemove", function(event) {
+                            tooltip
+                                .style("left", (event.pageX + 5) + "px") // 마우스 이동 시 위치 업데이트
+                                .style("top", (event.pageY + 5) + "px");
+                        })
+                        .on("mouseout", function() {
+                            tooltip.style("display", "none"); // 마우스가 나가면 툴팁 숨김
+                        })
+                        .call(d3.drag()
+                            .on("start", dragstarted)
+                            .on("drag", dragged)
+                            .on("end", dragended));
+
+                    // 텍스트를 일정한 글자 수로 줄바꿈하는 함수
+                    function splitText(text, maxLineLength) {
+                        const words = text.split(" ");
+                        const lines = [];
+                        let line = "";
+
+                        for (let word of words) {
+                            if ((line + word).length > maxLineLength) {
+                                lines.push(line);
+                                line = word;
+                            } else {
+                                line += (line ? " " : "") + word;
+                            }
+                        }
+                        lines.push(line); // 마지막 줄 추가
+                        return lines;
+                    }
+
+                    // 텍스트 요소 생성
+                    const text = svg.append("g")
+                        .attr("class", "texts")
+                        .selectAll("text")
+                        .data(data.nodes)
+                        .enter().append("text")
+                        .attr("font-size", "10px")
+                        .attr("font-weight", "bold")
+                        .attr("text-anchor", "middle");
+
+                    // `tick` 이벤트 내에서 `tspan` 줄바꿈 처리
+                    simulation.on("tick", () => {
+                        link
+                            .attr("x1", d => d.source.x)
+                            .attr("y1", d => d.source.y)
+                            .attr("x2", d => d.target.x)
+                            .attr("y2", d => d.target.y);
+
+                        node
+                            .attr("cx", d => d.x)
+                            .attr("cy", d => d.y);
+
+                        // 텍스트 위치와 줄바꿈 적용
+                        text
+                            .attr("x", d => d.x)
+                            .attr("y", d => d.y - 10) // 노드 중심 위로 살짝 올림
+                            .each(function(d) {
+                                const lines = splitText(d.id, 10); // 각 텍스트를 줄바꿈
+                                d3.select(this).selectAll("tspan").remove(); // 기존 tspan 제거
+                                lines.forEach((line, i) => {
+                                    d3.select(this)
+                                        .append("tspan")
+                                        .attr("x", d.x)
+                                        .attr("dy", i === 0 ? "0em" : "1.2em") // 줄 간격 설정
+                                        .text(line);
+                                });
+                            });
+                    });
+
+                    function dragstarted(event, d) {
+                        if (!event.active) simulation.alphaTarget(0.3).restart();
+                        d.fx = d.x;
+                        d.fy = d.y;
+                    }
+
+                    function dragged(event, d) {
+                        d.fx = event.x;
+                        d.fy = event.y;
+                    }
+
+                    function dragended(event, d) {
+                        if (!event.active) simulation.alphaTarget(0);
+                        d.fx = null;
+                        d.fy = null;
+                    }
+
+                    // 그래프 및 표 강조
+                    function highlightItem(id) {
+                        // Reset previously highlighted items
+                        d3.selectAll("circle").classed("selected", false);
+                        d3.selectAll("td").classed("highlight", false);
+
+                        // Highlight clicked node in graph
+                        d3.selectAll("circle").filter(d => d.id === id).classed("selected", true);
+
+                        // Highlight corresponding cell in table
+                        d3.selectAll("td").filter(function(event, d) {
+                            return d3.select(this).text().trim() === id;
+                        }).classed("highlight", true);
+                    }
+
+                    // 스킬을 테이블로 표현
+                    function splitSkillsIntoThreeColumns(skills) {
+                        const tbody = d3.select("#skillsBody");
+                        const thirdLength = Math.ceil(skills.length / 3);
+                        const firstColumn = skills.slice(0, thirdLength);
+                        const secondColumn = skills.slice(thirdLength, 2 * thirdLength);
+                        const thirdColumn = skills.slice(2 * thirdLength);
+
+                        firstColumn.forEach((skill, i) => {
+                            const row = tbody.append("tr");
+                    
+                            [skill, secondColumn[i] || "", thirdColumn[i] || ""].forEach((text) => {
+                                const cell = row.append("td").attr("class", "skill-cell");
+                    
+                                if (text.length > 10) { // 긴 텍스트는 두 줄로 분리하고 글씨 크기 축소
+                                    const words = text.split(" ");
+                                    let line1 = "";
+                                    let line2 = "";
+
+                                    // 단어를 두 줄로 균등하게 나눕니다
+                                    for (let word of words) {
+                                        if (line1.length + word.length <= text.length / 2) {
+                                            line1 += (line1 ? " " : "") + word;
+                                        } else {
+                                            line2 += (line2 ? " " : "") + word;
+                                        }
+                                    }
+                                    cell.html(`<span style="font-size: 14px">${line1}<br>${line2}</span>`);
+                                } else {
+                                    cell.text(text);
+                                }
+                            });
+                        });
+
+                        // 테이블 행 클릭 이벤트
+                        d3.selectAll("td").on("click", function() {
+                            const selectedText = d3.select(this).text().trim();
+                            highlightItem(selectedText);
+                            selectedSkill = selectedText; // 선택된 스킬 업데이트
+                            const button1 = document.getElementById('related-jobs-btn');
+                            const button2 = document.getElementById('delete-skill-btn');
+                            // 버튼 보이게 설정
+                            button1.style.display = 'block';
+                            button2.style.display = 'block';
+                        });
+                    }
+
+                    // 페이지가 로드되면 스킬을 분할하여 테이블에 삽입
+                    splitSkillsIntoThreeColumns(skills_list);
+                    
+                    // 스킬 클릭 시 처리
+                    function handleSkillClick(d) {
+                        if (d.group === 2) { // 스킬 그룹일 때만 작동
+                            selectedSkill = d.id; // 선택된 스킬 업데이트
+                            const button1 = document.getElementById('related-jobs-btn');
+                            const button2 = document.getElementById('delete-skill-btn');
+                            // 버튼 보이게 설정
+                            button1.style.display = 'block';
+                            button2.style.display = 'block';
                         }
                     }
-                }
-                return cookieValue;
-            }
 
-            function goBack() {
-                window.history.back();
-            }
+                    // 스킬 추가 버튼 클릭 이벤트
+                    document.getElementById('add-skill-btn').addEventListener('click', function() {
+                        const newSkill = document.getElementById('new-skill-input').value.trim();
+                        if (newSkill) {
+                            addSkill(newSkill);
+                        } else {
+                            alert("스킬명을 입력하세요.");
+                        }
+                    });
 
-            const job_name = "{{ job_name|safe }}";
-            const skills_list = {{ skills|safe }};
-            console.log('선택된 작업:', job_name, '선택된 skills:', skills_list);
-
-            const data = {
-                nodes: [
-                    { id: job_name, group: 1 },
-                    ...skills_list.map(skill => ({ id: skill, group: 2 }))
-                ],
-                links: skills_list.map(skill => ({ source: job_name, target: skill }))
-            };
-
-            const svg = d3.select("#graph");
-            const width = +svg.attr("width");
-            const height = +svg.attr("height");
-
-            const simulation = d3.forceSimulation(data.nodes)
-                .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
-                .force("charge", d3.forceManyBody().strength(-500))
-                .force("center", d3.forceCenter(width / 2, height / 2));
-
-            const link = svg.append("g")
-                .attr("class", "links")
-                .selectAll("line")
-                .data(data.links)
-                .enter().append("line")
-                .attr("class", "link")
-                .attr("stroke-width", 2);
-
-            const node = svg.append("g")
-                .attr("class", "nodes")
-                .selectAll("circle")
-                .data(data.nodes)
-                .enter().append("circle")
-                .attr("class", "node")
-                .attr("r", 15)
-                .attr("fill", d => d.group === 1 ? "red" : "blue")
-                .on("click", (event, d) => {
-                    highlightItem(d.id);
-                    handleSkillClick(d);
-                })
-                .call(d3.drag()
-                    .on("start", dragstarted)
-                    .on("drag", dragged)
-                    .on("end", dragended));
-
-            const text = svg.append("g")
-                .attr("class", "texts")
-                .selectAll("text")
-                .data(data.nodes)
-                .enter().append("text")
-                .attr("x", 15)
-                .attr("y", 3)
-                .text(d => d.id);
-
-            simulation.on("tick", () => {
-                link.attr("x1", d => d.source.x)
-                    .attr("y1", d => d.source.y)
-                    .attr("x2", d => d.target.x)
-                    .attr("y2", d => d.target.y);
-
-                node.attr("cx", d => d.x)
-                    .attr("cy", d => d.y);
-
-                text.attr("x", d => d.x + 15)
-                    .attr("y", d => d.y + 3);
-            });
-
-            function dragstarted(event, d) {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            }
-
-            function dragged(event, d) {
-                d.fx = event.x;
-                d.fy = event.y;
-            }
-
-            function dragended(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-            }
-
-            // 그래프 및 표 강조
-            function highlightItem(id) {
-                // Reset previously highlighted items
-                d3.selectAll("circle").classed("selected", false);
-                d3.selectAll("td").classed("highlight", false);
-
-                // Highlight clicked node in graph
-                d3.selectAll("circle").filter(d => d.id === id).classed("selected", true);
-
-                // Highlight corresponding cell in table
-                d3.selectAll("td").filter(function(event, d) {
-                    return d3.select(this).text().trim() === id;
-                }).classed("highlight", true);
-            }
-
-            // 스킬을 테이블로 표현
-            function splitSkillsIntoThreeColumns(skills) {
-                const tbody = d3.select("#skillsBody");
-                const thirdLength = Math.ceil(skills.length / 3);
-                const firstColumn = skills.slice(0, thirdLength);
-                const secondColumn = skills.slice(thirdLength, 2 * thirdLength);
-                const thirdColumn = skills.slice(2 * thirdLength);
-
-                firstColumn.forEach((skill, i) => {
-                    const row = tbody.append("tr");
-                    row.append("td").text(skill);
-                    row.append("td").text(secondColumn[i] || "");  // 두 번째 열이 없을 경우 빈칸으로 처리
-                    row.append("td").text(thirdColumn[i] || "");  // 세 번째 열이 없을 경우 빈칸으로 처리
-                });
-
-                // 테이블 행 클릭 이벤트
-                d3.selectAll("td").on("click", function() {
-                    const selectedText = d3.select(this).text().trim();
-                    highlightItem(selectedText);
-                    selectedSkill = selectedText; // 선택된 스킬 업데이트
-                    const button1 = document.getElementById('related-jobs-btn');
-                    const button2 = document.getElementById('delete-skill-btn');
-                    // 버튼 보이게 설정
-                    button1.style.display = 'block';
-                    button2.style.display = 'block';
-                });
-            }
-
-            // 페이지가 로드되면 스킬을 분할하여 테이블에 삽입
-            splitSkillsIntoThreeColumns(skills_list);
-            
-            // 스킬 클릭 시 처리
-            function handleSkillClick(d) {
-                if (d.group === 2) { // 스킬 그룹일 때만 작동
-                    selectedSkill = d.id; // 선택된 스킬 업데이트
-                    const button1 = document.getElementById('related-jobs-btn');
-                    const button2 = document.getElementById('delete-skill-btn');
-                    // 버튼 보이게 설정
-                    button1.style.display = 'block';
-                    button2.style.display = 'block';
-                }
-            }
-
-            // 스킬 추가 버튼 클릭 이벤트
-            document.getElementById('add-skill-btn').addEventListener('click', function() {
-                const newSkill = document.getElementById('new-skill-input').value.trim();
-                if (newSkill) {
-                    addSkill(newSkill);
-                } else {
-                    alert("스킬명을 입력하세요.");
-                }
-            });
-
-            function updateSkills(skills) {
-                d3.select("#skillsBody").selectAll("*").remove(); // 기존 표 삭제
-                splitSkillsIntoThreeColumns(skills); // 표 새로 그리기
-            }
-
-            function updateGraph(newSkills) {
-                // 기존 그래프의 모든 요소 삭제
-                svg.selectAll("*").remove();
-                
-                // 새로운 데이터 준비
-                const newNodes = [
-                    { id: job_name, group: 1 },
-                    ...newSkills.map(skill => ({ id: skill, group: 2 }))
-                ];
-            
-                const newLinks = newSkills.map(skill => ({ source: job_name, target: skill }));
-            
-                // 새로운 그래프를 그리기 위한 설정
-                const link = svg.append("g")
-                    .attr("class", "links")
-                    .selectAll("line")
-                    .data(newLinks)
-                    .enter().append("line")
-                    .attr("class", "link")
-                    .attr("stroke-width", 2);
-            
-                const node = svg.append("g")
-                    .attr("class", "nodes")
-                    .selectAll("circle")
-                    .data(newNodes)
-                    .enter().append("circle")
-                    .attr("class", "node")
-                    .attr("r", 15)
-                    .attr("fill", d => d.group === 1 ? "red" : "blue")
-                    .on("click", (event, d) => {
-                        highlightItem(d.id);
-                        handleSkillClick(d);
-                    })
-                    .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended));
-            
-                const text = svg.append("g")
-                    .attr("class", "texts")
-                    .selectAll("text")
-                    .data(newNodes)
-                    .enter().append("text")
-                    .attr("x", 15)
-                    .attr("y", 3)
-                    .text(d => d.id);
-            
-                // 새 시뮬레이션 설정
-                simulation.nodes(newNodes);
-                simulation.force("link").links(newLinks);
-                simulation.alpha(1).restart();
-            
-                simulation.on("tick", () => {
-                    link.attr("x1", d => d.source.x)
-                        .attr("y1", d => d.source.y)
-                        .attr("x2", d => d.target.x)
-                        .attr("y2", d => d.target.y);
-            
-                    node.attr("cx", d => d.x)
-                        .attr("cy", d => d.y);
-            
-                    text.attr("x", d => d.x + 15)
-                        .attr("y", d => d.y + 3);
-                });
-            }
-            
-            // 스킬 추가 API 요청
-            function addSkill(skill) {
-                const csrftoken = getCookie('csrftoken');
-                fetch('/api/skill/add/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftoken // CSRF 토큰 추가
-                    },
-                    body: JSON.stringify({ job_name: job_name, skill: skill, skills_list: skills_list }) // 새로운 스킬을 백엔드로 전송
-                })
-                .then(data => {
-                    skills_list.push(skill);
-                    alert("스킬이 추가되었습니다.");
-                    console.log(skills_list)
-                    updateSkills(skills_list); // 표 새로 그리기
-                    updateGraph(skills_list); // 그래프 새로 그리기
-                })
-                .catch(error => console.error('Error adding skill:', error));
-            }
-
-            // 스킬 삭제 버튼 클릭 이벤트
-            document.getElementById('delete-skill-btn').addEventListener('click', function() {
-                if (selectedSkill) {
-                    if (confirm(`스킬 "${selectedSkill}"을(를) 삭제하시겠습니까?`)) {
-                        deleteSkill(selectedSkill);
+                    function updateSkills(skills) {
+                        d3.select("#skillsBody").selectAll("*").remove(); // 기존 표 삭제
+                        splitSkillsIntoThreeColumns(skills); // 표 새로 그리기
                     }
-                } else {
-                    alert("삭제할 스킬을 선택하세요.");
-                }
-            });
 
-            // 스킬 삭제 API 요청
-            function deleteSkill(skill) {
-                const csrftoken = getCookie('csrftoken');
-                fetch('/api/skill/delete/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftoken // CSRF 토큰 추가
-                    },
-                    body: JSON.stringify({ job_name: job_name, skill: skill, skills_list: skills_list }) // 삭제할 스킬을 백엔드로 전송
-                })
-                .then(data => {
-                    const index = skills_list.indexOf(skill);
-                    if (index !== -1) {
-                        skills_list.splice(index, 1);
+                    function updateGraph(newSkills) {
+                        // 기존 그래프의 모든 요소 삭제
+                        svg.selectAll("*").remove();
+                        
+                        // 새로운 데이터 준비
+                        const newNodes = [
+                            { id: job_name, group: 1 },
+                            ...newSkills.map(skill => ({ id: skill, group: 2 }))
+                        ];
+                    
+                        const newLinks = newSkills.map(skill => ({ source: job_name, target: skill }));
+                    
+                        // 새로운 그래프를 그리기 위한 설정
+                        const link = svg.append("g")
+                            .attr("class", "links")
+                            .selectAll("line")
+                            .data(newLinks)
+                            .enter().append("line")
+                            .attr("class", "link")
+                            .attr("stroke-width", 2);
+                    
+                        const node = svg.append("g")
+                            .attr("class", "nodes")
+                            .selectAll("circle")
+                            .data(newNodes)
+                            .enter().append("circle")
+                            .attr("class", "node")
+                            .attr("r", 15)
+                            .attr("fill", d => d.group === 1 ? "red" : "blue")
+                            .on("click", (event, d) => {
+                                highlightItem(d.id);
+                                handleSkillClick(d);
+                            })
+                            .call(d3.drag()
+                                .on("start", dragstarted)
+                                .on("drag", dragged)
+                                .on("end", dragended));
+                    
+                        const text = svg.append("g")
+                            .attr("class", "texts")
+                            .selectAll("text")
+                            .data(newNodes)
+                            .enter().append("text")
+                            .attr("x", 15)
+                            .attr("y", 3)
+                            .text(d => d.id);
+                    
+                        // 새 시뮬레이션 설정
+                        simulation.nodes(newNodes);
+                        simulation.force("link").links(newLinks);
+                        simulation.alpha(1).restart();
+                    
+                        simulation.on("tick", () => {
+                            link.attr("x1", d => d.source.x)
+                                .attr("y1", d => d.source.y)
+                                .attr("x2", d => d.target.x)
+                                .attr("y2", d => d.target.y);
+                    
+                            node.attr("cx", d => d.x)
+                                .attr("cy", d => d.y);
+                    
+                            text.attr("x", d => d.x + 15)
+                                .attr("y", d => d.y + 3);
+                        });
                     }
-                    alert("스킬이 삭제되었습니다.");
-                    console.log(skills_list)
-                    updateSkills(skills_list); // 표 새로 그리기
-                    updateGraph(skills_list); // 그래프 새로 그리기
-                })
-                .catch(error => console.error('Error deleting skill:', error));
-            }
+                    
+                    // 스킬 추가 API 요청
+                    function addSkill(skill) {
+                        const csrftoken = getCookie('csrftoken');
+                        fetch('/api/skill/add/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': csrftoken // CSRF 토큰 추가
+                            },
+                            body: JSON.stringify({ job_name: job_name, skill: skill, skills_list: skills_list }) // 새로운 스킬을 백엔드로 전송
+                        })
+                        .then(data => {
+                            skills_list.push(skill);
+                            alert("스킬이 추가되었습니다.");
+                            console.log(skills_list)
+                            updateSkills(skills_list); // 표 새로 그리기
+                            updateGraph(skills_list); // 그래프 새로 그리기
+                        })
+                        .catch(error => console.error('Error adding skill:', error));
+                    }
 
-            // 관련 직업 확인 버튼 클릭 시 처리
-            document.getElementById('related-jobs-btn').addEventListener('click', function() {
-                fetchRelatedJobs(); // 스킬에 대한 관련 직업 검색 함수 호출
-            });
-            
-            // 관련 직업 확인 버튼 클릭 시 백엔드에 요청
-            function fetchRelatedJobs() {
-                if (selectedSkill) {
-                    const csrftoken = getCookie('csrftoken');
-                    console.log('선택된 스킬: ', selectedSkill);
-                    fetch('/graph/extend/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': csrftoken // CSRF 토큰을 헤더에 포함
-                        },
-                        body: JSON.stringify({ skill: selectedSkill })
-                    })
-                    .then(data => {
-                        window.location.href = '/graph/extend/';
-                    })
-                    .catch(error => console.error('Error fetching related jobs:', error));
-                }
-            }
+                    // 스킬 삭제 버튼 클릭 이벤트
+                    document.getElementById('delete-skill-btn').addEventListener('click', function() {
+                        if (selectedSkill) {
+                            if (confirm(`스킬 "${selectedSkill}"을(를) 삭제하시겠습니까?`)) {
+                                deleteSkill(selectedSkill);
+                            }
+                        } else {
+                            alert("삭제할 스킬을 선택하세요.");
+                        }
+                    });
 
-        </script>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        {% load static %}
-        <script src="{% static 'js/scripts.js' %}"></script>
+                    // 스킬 삭제 API 요청
+                    function deleteSkill(skill) {
+                        const csrftoken = getCookie('csrftoken');
+                        fetch('/api/skill/delete/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': csrftoken // CSRF 토큰 추가
+                            },
+                            body: JSON.stringify({ job_name: job_name, skill: skill, skills_list: skills_list }) // 삭제할 스킬을 백엔드로 전송
+                        })
+                        .then(data => {
+                            const index = skills_list.indexOf(skill);
+                            if (index !== -1) {
+                                skills_list.splice(index, 1);
+                            }
+                            alert("스킬이 삭제되었습니다.");
+                            console.log(skills_list)
+                            updateSkills(skills_list); // 표 새로 그리기
+                            updateGraph(skills_list); // 그래프 새로 그리기
+                        })
+                        .catch(error => console.error('Error deleting skill:', error));
+                    }
+
+                    // 관련 직업 확인 버튼 클릭 시 처리
+                    document.getElementById('related-jobs-btn').addEventListener('click', function() {
+                        fetchRelatedJobs(); // 스킬에 대한 관련 직업 검색 함수 호출
+                    });
+                    
+                    // 관련 직업 확인 버튼 클릭 시 백엔드에 요청
+                    function fetchRelatedJobs() {
+                        if (selectedSkill) {
+                            const csrftoken = getCookie('csrftoken');
+                            console.log('선택된 스킬: ', selectedSkill);
+                            fetch('/graph/extend/', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRFToken': csrftoken // CSRF 토큰을 헤더에 포함
+                                },
+                                body: JSON.stringify({ skill: selectedSkill })
+                            })
+                            .then(data => {
+                                window.location.href = '/graph/extend/';
+                            })
+                            .catch(error => console.error('Error fetching related jobs:', error));
+                        }
+                    }
+
+                </script>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-light py-4 mt-auto">
+            <div class="container px-5"><div class="small text-center text-muted">Copyright © Your Website 2024</div></div>
+        </footer>
+        <!-- Bootstrap JS-->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     </body>
 </html>

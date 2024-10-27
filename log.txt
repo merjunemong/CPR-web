@@ -706,3 +706,689 @@ django.template.exceptions.TemplateDoesNotExist: community/questions.html
 2024-10-14 23:16:22,842 - INFO - Watching for file changes with StatReloader
 2024-10-14 23:16:23,141 - WARNING - Not Found: /SelfDiscovery/assets/favicon.ico
 2024-10-14 23:20:13,877 - WARNING - Not Found: /community/post/community/
+2024-10-15 15:08:49,233 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-15 15:08:49,233 - INFO - Added job "backup_data" to job store "default"
+2024-10-15 15:08:49,233 - INFO - Scheduler started
+2024-10-15 15:08:51,951 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-15 15:08:51,952 - INFO - Added job "backup_data" to job store "default"
+2024-10-15 15:08:51,952 - INFO - Scheduler started
+2024-10-15 15:08:51,979 - INFO - Watching for file changes with StatReloader
+2024-10-15 17:38:12,454 - ERROR - Unable to retrieve routing information
+2024-10-15 17:38:12,906 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 105, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 145, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-15 17:38:14,900 - ERROR - Unable to retrieve routing information
+2024-10-15 17:38:14,981 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 105, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 145, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-15 17:38:15,909 - ERROR - Unable to retrieve routing information
+2024-10-15 17:38:16,000 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 105, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 145, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-15 17:39:07,192 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-15 17:39:10,492 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-15 17:39:10,492 - INFO - Added job "backup_data" to job store "default"
+2024-10-15 17:39:10,492 - INFO - Scheduler started
+2024-10-15 17:39:10,515 - INFO - Watching for file changes with StatReloader
+2024-10-15 18:04:35,042 - INFO - admin delete skill 123 at 경비원
+2024-10-16 20:01:51,017 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-19 22:08:26,410 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-19 22:08:26,410 - INFO - Added job "backup_data" to job store "default"
+2024-10-19 22:08:26,410 - INFO - Scheduler started
+2024-10-19 22:08:41,451 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-19 22:08:41,451 - INFO - Added job "backup_data" to job store "default"
+2024-10-19 22:08:41,451 - INFO - Scheduler started
+2024-10-19 22:08:43,919 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-19 22:08:43,920 - INFO - Added job "backup_data" to job store "default"
+2024-10-19 22:08:43,920 - INFO - Scheduler started
+2024-10-19 22:08:43,943 - INFO - Watching for file changes with StatReloader
+2024-10-19 22:08:57,646 - WARNING - Not Found: /SelfDiscovery/assets/favicon.ico
+2024-10-19 22:36:43,372 - WARNING - Not Found: /viewdb/assets/favicon.ico
+2024-10-19 22:37:11,553 - WARNING - Not Found: /resume/assets/favicon.ico
+2024-10-19 22:37:15,088 - WARNING - Not Found: /community/assets/favicon.ico
+2024-10-19 22:37:17,394 - WARNING - Not Found: /contact/assets/favicon.ico
+2024-10-19 22:37:22,408 - WARNING - Not Found: /community/create/assets/favicon.ico
+2024-10-19 22:56:35,771 - WARNING - Not Found: /resume/result/assets/favicon.ico
+2024-10-19 22:57:19,269 - INFO - admin save new skill test to 경비원
+2024-10-19 22:57:30,271 - INFO - admin delete skill test at 경비원
+2024-10-19 22:57:36,745 - WARNING - Not Found: /community/post/assets/favicon.ico
+2024-10-19 23:03:41,200 - INFO - admin save new skill test to 경비원
+2024-10-19 23:03:52,018 - INFO - admin delete skill test at 경비원
+2024-10-23 21:51:25,186 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-23 21:51:25,186 - INFO - Added job "backup_data" to job store "default"
+2024-10-23 21:51:25,186 - INFO - Scheduler started
+2024-10-23 21:51:28,206 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-23 21:51:28,206 - INFO - Added job "backup_data" to job store "default"
+2024-10-23 21:51:28,206 - INFO - Scheduler started
+2024-10-23 21:51:28,233 - INFO - Watching for file changes with StatReloader
+2024-10-23 21:51:32,600 - WARNING - Not Found: /viewdb/assets/favicon.ico
+2024-10-23 21:51:40,130 - ERROR - Unable to retrieve routing information
+2024-10-23 21:51:40,216 - ERROR - Internal Server Error: /graph/editable/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 105, in graph_editable
+    skills = getSkills(job)
+             ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 146, in getSkills
+    skills = app.find_max_edge_skill(job_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 54, in find_max_edge_skill
+    max_edge_skill = self._find_and_return_max_edge_skill(job_name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 68, in _find_and_return_max_edge_skill
+    result = self.fetch_data(query, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-23 22:03:51,327 - INFO - admin delete skill 사후관리 at 웹 개발자
+2024-10-23 22:04:00,246 - INFO - admin save new skill 사후관리 to 웹 개발자
+2024-10-23 22:04:18,622 - INFO - admin delete skill 사후관리 at 웹 개발자
+2024-10-23 22:04:31,547 - INFO - admin delete skill 사후관리 at 웹 개발자
+2024-10-23 22:35:38,944 - WARNING - Not Found: /SelfDiscovery/assets/favicon.ico
+2024-10-24 00:00:00,015 - INFO - Running job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-24 00:00:00 KST)" (scheduled at 2024-10-24 00:00:00+09:00)
+2024-10-24 00:00:00,059 - INFO - Running job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-24 00:00:00 KST)" (scheduled at 2024-10-24 00:00:00+09:00)
+2024-10-24 00:00:04,279 - ERROR - Job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-25 00:00:00 KST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\cprenv\Lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 170, in backup_data
+    driver.dump_neo4j_db()
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 121, in dump_neo4j_db
+    extractor.extract_data()
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\cprenv\Lib\site-packages\neo4j_backup\neo4j_extractor.py", line 81, in extract_data
+    mkdir(self.project_dir)
+FileExistsError: [WinError 183] 파일이 이미 있으므로 만들 수 없습니다: 'C:\\Users\\kdjun\\OneDrive\\바탕 화면\\학교생활\\동아대\\24년도\\졸작\\CPR-web\\config\\dump_20241024'
+2024-10-24 00:00:39,234 - INFO - Neo4j datatbase has backed up at 20241024
+2024-10-24 00:00:39,234 - INFO - Job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-25 00:00:00 KST)" executed successfully
+2024-10-25 16:31:37,215 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-25 16:31:37,216 - INFO - Added job "backup_data" to job store "default"
+2024-10-25 16:31:37,216 - INFO - Scheduler started
+2024-10-25 16:31:39,146 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-25 16:31:39,147 - INFO - Added job "backup_data" to job store "default"
+2024-10-25 16:31:39,147 - INFO - Scheduler started
+2024-10-25 16:31:39,166 - INFO - Watching for file changes with StatReloader
+2024-10-26 15:51:39,454 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 15:51:39,455 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 15:51:39,455 - INFO - Scheduler started
+2024-10-26 15:51:41,972 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 15:51:41,972 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 15:51:41,972 - INFO - Scheduler started
+2024-10-26 15:51:42,005 - INFO - Watching for file changes with StatReloader
+2024-10-26 15:51:50,866 - WARNING - Not Found: /resume/assets/favicon.ico
+2024-10-26 20:14:15,319 - ERROR - Internal Server Error: /resume/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 38, in resume
+    return render(request, 'resume.html', {'form':form, 'skills':skills})
+                                                  ^^^^
+UnboundLocalError: cannot access local variable 'form' where it is not associated with a value
+2024-10-26 20:14:15,410 - WARNING - Not Found: /favicon.ico
+2024-10-26 20:15:51,794 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:15:54,042 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:15:54,043 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:15:54,043 - INFO - Scheduler started
+2024-10-26 20:15:54,066 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:17:10,651 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:17:12,724 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:17:12,724 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:17:12,724 - INFO - Scheduler started
+2024-10-26 20:17:12,742 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:18:07,089 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:18:09,585 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:18:09,585 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:18:09,585 - INFO - Scheduler started
+2024-10-26 20:18:09,602 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:18:22,875 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:18:24,931 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:18:24,931 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:18:24,931 - INFO - Scheduler started
+2024-10-26 20:18:24,951 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:19:27,240 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:19:29,385 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:19:29,386 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:19:29,386 - INFO - Scheduler started
+2024-10-26 20:19:29,405 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:21:00,050 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:21:02,203 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:21:02,203 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:21:02,203 - INFO - Scheduler started
+2024-10-26 20:21:02,222 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:27:56,358 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:27:58,551 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:27:58,552 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:27:58,552 - INFO - Scheduler started
+2024-10-26 20:27:58,575 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:29:26,018 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:29:28,152 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:29:28,152 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:29:28,153 - INFO - Scheduler started
+2024-10-26 20:29:28,170 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:32:23,758 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:32:25,997 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:32:25,997 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:32:25,997 - INFO - Scheduler started
+2024-10-26 20:32:26,019 - INFO - Watching for file changes with StatReloader
+2024-10-26 20:32:41,196 - ERROR - Internal Server Error: /resume/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\sessions\middleware.py", line 59, in process_response
+    request.session.save()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\sessions\backends\db.py", line 82, in save
+    obj = self.create_model_instance(data)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\sessions\backends\db.py", line 69, in create_model_instance
+    session_data=self.encode(data),
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\sessions\backends\base.py", line 94, in encode
+    return signing.dumps(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\signing.py", line 152, in dumps
+    return TimestampSigner(key=key, salt=salt).sign_object(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\signing.py", line 250, in sign_object
+    data = serializer().dumps(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\signing.py", line 127, in dumps
+    return json.dumps(obj, separators=(",", ":")).encode("latin-1")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type InMemoryUploadedFile is not JSON serializable
+2024-10-26 20:37:34,807 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 20:37:37,000 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 20:37:37,001 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 20:37:37,001 - INFO - Scheduler started
+2024-10-26 20:37:37,027 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:26:17,132 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:26:19,367 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:26:19,367 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:26:19,367 - INFO - Scheduler started
+2024-10-26 21:26:19,388 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:26:21,428 - ERROR - Internal Server Error: /resume/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 40, in resume
+    request.session['skills'] = skills
+                                ^^^^^^
+UnboundLocalError: cannot access local variable 'skills' where it is not associated with a value
+2024-10-26 21:27:14,732 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:27:16,869 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:27:16,869 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:27:16,869 - INFO - Scheduler started
+2024-10-26 21:27:16,887 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:27:17,644 - ERROR - Internal Server Error: /resume/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 43, in resume
+    request.session['skills'] = skills
+                                ^^^^^^
+UnboundLocalError: cannot access local variable 'skills' where it is not associated with a value
+2024-10-26 21:28:53,718 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:28:55,832 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:28:55,832 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:28:55,833 - INFO - Scheduler started
+2024-10-26 21:28:55,852 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:33:33,986 - WARNING - Not Found: /community/assets/favicon.ico
+2024-10-26 21:34:18,055 - WARNING - Not Found: /contact/assets/favicon.ico
+2024-10-26 21:52:43,146 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:52:45,197 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:52:45,197 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:52:45,197 - INFO - Scheduler started
+2024-10-26 21:52:45,215 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:53:19,355 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:53:21,624 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:53:21,624 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:53:21,624 - INFO - Scheduler started
+2024-10-26 21:53:21,645 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:53:50,741 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:53:52,846 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:53:52,847 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:53:52,847 - INFO - Scheduler started
+2024-10-26 21:53:52,867 - INFO - Watching for file changes with StatReloader
+2024-10-26 21:55:32,243 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 21:55:34,526 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 21:55:34,526 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 21:55:34,526 - INFO - Scheduler started
+2024-10-26 21:55:34,546 - INFO - Watching for file changes with StatReloader
+2024-10-26 22:52:16,573 - ERROR - Unable to retrieve routing information
+2024-10-26 22:52:16,659 - ERROR - Internal Server Error: /resume/result/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 60, in resume_result
+    jobs = getSimilarJob(skills)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 140, in getSimilarJob
+    jobs = app.find_similar_job(user_skills)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 32, in find_similar_job
+    names = self._find_and_return_job(user_skills)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 48, in _find_and_return_job
+    jobs = self.fetch_data(query, parameters)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-26 22:52:16,735 - WARNING - Not Found: /resume/result/assets/favicon.ico
+2024-10-26 22:59:37,063 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 22:59:39,410 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 22:59:39,412 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 22:59:39,412 - INFO - Scheduler started
+2024-10-26 22:59:39,434 - INFO - Watching for file changes with StatReloader
+2024-10-26 22:59:55,798 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 22:59:58,094 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 22:59:58,094 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 22:59:58,094 - INFO - Scheduler started
+2024-10-26 22:59:58,113 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:03:41,604 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-26 23:03:43,968 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:03:43,968 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:03:43,968 - INFO - Scheduler started
+2024-10-26 23:03:43,989 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:03:58,241 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\answers_to_skills.py changed, reloading.
+2024-10-26 23:04:00,368 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:04:00,369 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:04:00,369 - INFO - Scheduler started
+2024-10-26 23:04:00,390 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:07:46,884 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\answers_to_skills.py changed, reloading.
+2024-10-26 23:07:53,126 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:07:53,126 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:07:53,126 - INFO - Scheduler started
+2024-10-26 23:07:53,202 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:15:58,720 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\answers_to_skills.py changed, reloading.
+2024-10-26 23:16:00,951 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:16:00,951 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:16:00,951 - INFO - Scheduler started
+2024-10-26 23:16:00,970 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:16:03,190 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\answers_to_skills.py changed, reloading.
+2024-10-26 23:16:05,306 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:16:05,306 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:16:05,306 - INFO - Scheduler started
+2024-10-26 23:16:05,327 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:17:47,058 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\resume_to_skills.py changed, reloading.
+2024-10-26 23:17:49,363 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:17:49,363 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:17:49,363 - INFO - Scheduler started
+2024-10-26 23:17:49,385 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:27:51,577 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\answers_to_skills.py changed, reloading.
+2024-10-26 23:27:54,066 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-26 23:27:54,066 - INFO - Added job "backup_data" to job store "default"
+2024-10-26 23:27:54,067 - INFO - Scheduler started
+2024-10-26 23:27:54,088 - INFO - Watching for file changes with StatReloader
+2024-10-26 23:40:50,247 - ERROR - Internal Server Error: /resume/result/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 63, in resume_result
+    return render(request, 'resume-result.html', {'form':form, 'jobs':jobs})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 484, in parse
+    raise self.error(token, e)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% csrf_token %' from '% csrf_token %'
+2024-10-26 23:40:50,336 - ERROR - Internal Server Error: /resume/result/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 67, in resume_result
+    return render(request, 'resume-result.html', {'form':form, 'jobs':jobs})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 484, in parse
+    raise self.error(token, e)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 703, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% csrf_token %' from '% csrf_token %'
+2024-10-26 23:52:27,478 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:52:35,287 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:52:38,787 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:52:43,716 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:52:47,618 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:53:39,752 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:55:09,139 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:55:53,004 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:56:18,831 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:57:39,005 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-26 23:59:09,410 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-27 00:00:00,007 - INFO - Running job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-27 00:00:00 KST)" (scheduled at 2024-10-27 00:00:00+09:00)
+2024-10-27 00:00:22,351 - INFO - Neo4j datatbase has backed up at 20241027
+2024-10-27 00:00:22,352 - INFO - Job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-28 00:00:00 KST)" executed successfully
+2024-10-27 00:00:52,740 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /graph/
+2024-10-27 14:03:48,997 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:03:53,328 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:03:53,328 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:03:53,328 - INFO - Scheduler started
+2024-10-27 14:03:53,378 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:04:12,785 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\urls.py changed, reloading.
+2024-10-27 14:04:17,452 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:04:17,453 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:04:17,453 - INFO - Scheduler started
+2024-10-27 14:04:17,510 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:11:01,362 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:11:06,428 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:11:06,429 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:11:06,429 - INFO - Scheduler started
+2024-10-27 14:11:06,465 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:12:23,233 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:12:26,357 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:12:26,357 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:12:26,357 - INFO - Scheduler started
+2024-10-27 14:12:26,384 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:13:32,146 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:13:35,390 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:13:35,390 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:13:35,391 - INFO - Scheduler started
+2024-10-27 14:13:35,416 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:14:25,283 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:14:28,759 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:14:28,759 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:14:28,759 - INFO - Scheduler started
+2024-10-27 14:14:28,787 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:15:29,312 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:15:32,435 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:15:32,436 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:15:32,436 - INFO - Scheduler started
+2024-10-27 14:15:32,471 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:16:43,026 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:16:46,176 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:16:46,176 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:16:46,176 - INFO - Scheduler started
+2024-10-27 14:16:46,202 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:17:21,860 - ERROR - Internal Server Error: /resume/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 52, in resume
+    return render(request, 'resume.html', {'form': form, 'skills': skills, 'answers': answers, 'file_url': file_url})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 484, in parse
+    raise self.error(token, e)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'defalut'
+2024-10-27 14:18:46,169 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:18:49,071 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:18:49,071 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:18:49,071 - INFO - Scheduler started
+2024-10-27 14:18:49,099 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:19:16,746 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:19:19,540 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:19:19,540 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:19:19,540 - INFO - Scheduler started
+2024-10-27 14:19:19,571 - INFO - Watching for file changes with StatReloader
+2024-10-27 14:19:33,482 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 14:19:36,222 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 14:19:36,222 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 14:19:36,222 - INFO - Scheduler started
+2024-10-27 14:19:36,247 - INFO - Watching for file changes with StatReloader
+2024-10-27 16:00:35,672 - WARNING - Not Found: /graph/assets/favicon.ico
+2024-10-27 17:13:46,859 - WARNING - Run time of job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-27 00:00:00 KST)" was missed by 17:13:46.856135

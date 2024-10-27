@@ -46,7 +46,6 @@
                             <li class="nav-item"><a class="nav-link" href="/resume/">Resume</a></li>
                             <li class="nav-item"><a class="nav-link" href="/viewdb/">ViewDB</a></li>
                             <li class="nav-item"><a class="nav-link" href="/community/">Community</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/SelfDiscovery/">SelfDiscovery</a></li>
                             <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
                         </ul>
                     </div>
@@ -61,32 +60,30 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
                             {% if jobs %}
-                                <h3>추천 직업</h3>
-                                <ul>
-                                    {% for job in jobs %}
-                                        <li class="job-item" data-job="{{ job }}">{{ job }}</li>
-                                    {% endfor %}
-                                    <li class="job-item" data-job="">
-                                        직업 직접 입력 : <input type="text" class="job-input">
-                                    </li>
-                                    <input type="hidden" id="csrf_token" value="{% csrf_token %}">
-                                    <button class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" onclick="skillActionClick(this)">
-                                        전문성 강화
-                                    </button>
-                                    <button class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" onclick="jobActionClick(this)">
-                                        다른 직업 추천
-                                    </button>
-                                </ul>
+                                <h4 class="fw-bolder mb-3">아래 직업 중 하나를 클릭하여 자세히 확인해봐요!!</h4>
+                                <div class="form-control">
+                                    <ul>
+                                        {% for job in jobs %}
+                                            <li class="job-item" data-job="{{ job }}">{{ job }}</li>
+                                        {% endfor %}
+                                        <li class="job-item" data-job="">
+                                            직업 직접 입력 : <input type="text" class="form-control-sm job-input">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-outline-dark btn-lg px-5 py-3 mt-3 fs-6 fw-bolder" onclick="skillActionClick(this)">
+                                    직업 자세히 보기
+                                </button>
                             {% endif %}
                             <style>
                                 .selected {
                                     background-color: lightblue; /* 선택된 항목의 배경색을 변경합니다. */
                                 }
                             </style>
+                            <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
                             <script>
                                 document.addEventListener('DOMContentLoaded', function () {
                                     const jobItems = document.querySelectorAll('.job-item');
-                                    const jobActions = document.querySelectorAll('.job-action');
                             
                                     jobItems.forEach(function (item) {
                                         item.addEventListener('click', function () {
@@ -105,25 +102,7 @@
                                     });
                                 });
 
-                                // CSRF 토큰을 가져오는 함수
-                                function getCookie(name) {
-                                    let cookieValue = null;
-                                    if (document.cookie && document.cookie !== '') {
-                                        const cookies = document.cookie.split(';');
-                                        for (let i = 0; i < cookies.length; i++) {
-                                            const cookie = cookies[i].trim();
-                                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    return cookieValue;
-                                }
-                                
                                 function skillActionClick(action) {
-                                    const csrftoken = getCookie('csrftoken');
-                                    
                                     const selectedJobItem = document.querySelector('.job-item.selected');
                                     if (!selectedJobItem) {
                                         alert('직업을 선택해주세요.');
@@ -152,52 +131,7 @@
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            'X-CSRFToken': csrftoken // CSRF 토큰을 헤더에 포함
-                                        },
-                                        body: JSON.stringify({ job: job}),
-                                    })
-                                    .then(data => {
-                                        console.log('서버로부터 받은 응답:', data);
-                                        // 여기서 응답에 따른 작업 수행 가능
-                                        window.location.href = '/graph/'
-                                    })
-                                    .catch(error => {
-                                        console.error('There has been a problem with your fetch operation:', error);
-                                    });
-                                };
-
-                                function jobActionClick(action) {
-                                    const csrftoken = getCookie('csrftoken');
-                                    
-                                    const selectedJobItem = document.querySelector('.job-item.selected');
-                                    if (!selectedJobItem) {
-                                        alert('직업을 선택해주세요.');
-                                        return;
-                                    }
-                                    // 선택된 job과 작업 정보 가져오기
-                                    let job = selectedJobItem.dataset.job;
-
-                                    // 선택된 job이 입력 필드인 경우
-                                    if (selectedJobItem.querySelector('.job-input')) {
-                                        const userInput = selectedJobItem.querySelector('.job-input').value.trim();
-                                        // 사용자 입력이 있는지 확인
-                                        if (userInput === "") {
-                                            alert('직업을 입력해주세요.');
-                                            return;
-                                        }
-                                        job = userInput; // 사용자 입력을 선택된 job으로 설정
-                                        selectedJobItem.setAttribute('data-job', userInput); // data-job 값 변경
-                                    }
-                                    const jobAction = action.dataset.action;
-                                    console.log('선택된 job:', job);
-                    
-                                    // 여기서 작업에 따라 POST 요청을 보낼 수 있습니다.
-                                    // 예를 들어, fetch API를 사용하여 서버에 POST 요청을 보낼 수 있습니다.
-                                    fetch('/graph/', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRFToken': csrftoken // CSRF 토큰을 헤더에 포함
+                                            'X-CSRFToken': '{{ csrf_token }}' // CSRF 토큰을 헤더에 포함
                                         },
                                         body: JSON.stringify({ job: job}),
                                     })

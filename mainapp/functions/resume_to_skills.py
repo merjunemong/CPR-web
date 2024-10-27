@@ -20,5 +20,5 @@ def getSkillsFromResume(filePath):
   # answer = response.choices[0].message.content.strip()
   # skills = answer.split(": ")[1]
   # skills_list = skills.split(", ")
-  skills_list = ["사후조치", "장비유지관리", "총기폭발물 대응", "보고문서관리"]
+  skills_list = ["데이터 분석", "정보처리기사", "영어능력", "컴퓨터 프로그래밍", "리더십", "팀워크", "웹 개발", "데이터베이스 관리"]
   return skills_list
