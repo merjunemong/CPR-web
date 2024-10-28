@@ -89,7 +89,7 @@
                             </div>
                             <button class="btn btn-dark btn-lg px-5 py-3 fs-6 mb-3 fw-bolder" onclick="submitSkills(this)">추천 직업 보기</button>
                             {% endif %}
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                                 <button class="btn btn-outline-dark mb-3" type="submit" name="action" value="requestAPI">
                                     {% if skills %}
                                         다시 추출하기
@@ -148,11 +148,23 @@
                             <script>
                                 let skills = {{ skills|safe }};
                                 
-                                // question1 ~ question9 요소들의 값을 배열로 수집
-                                const answers = Array.from({ length: 9 }, (_, i) => {
-                                    const questionId = `question${i + 1}`;
-                                    return document.getElementById(questionId)?.value || '';
-                                });
+                                function validateForm() {
+                                    const fileInput = document.querySelector('input[type="file"]');
+                                    
+                                    // question1 ~ question9 요소들의 값을 배열로 수집
+                                    const answers = Array.from({ length: 9 }, (_, i) => {
+                                        const questionId = `question${i + 1}`;
+                                        return document.getElementById(questionId)?.value || '';
+                                    });
+                            
+                                    // 파일이 없고 answers도 모두 비어있는 경우
+                                    if (!fileInput.files.length && answers.every(answer => answer === '')) {
+                                        alert('내용을 업로드해 주세요');
+                                        return false; // form 제출 중단
+                                    }
+                            
+                                    return true; // form 제출 진행
+                                }
 
                                 // 추가할 역량을 skills 배열에 추가
                                 function addSkill(button) {
@@ -171,7 +183,7 @@
                                             'Content-Type': 'application/json',
                                             'X-CSRFToken': '{{ csrf_token }}'
                                         },
-                                        body: JSON.stringify({ skills: skills, answers: answers })
+                                        body: JSON.stringify({ skills: skills })
                                     })
                                     .then(data => {
                                         if (data) {

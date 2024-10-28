@@ -35,6 +35,10 @@
                 stroke: orange;
                 stroke-width: 3px;
             }
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+            }
             .btn-container {
                 clear: both;
                 text-align: center;
@@ -42,15 +46,15 @@
             }
             .tooltip {
                 position: absolute;
-                display: none;
-                padding: 5px 10px;
-                background-color: rgba(0, 0, 0, 0.8);
-                color: #fff;
-                border-radius: 5px;
+                text-align: center;
+                width: auto;
+                height: auto;
+                padding: 5px;
+                font: 12px sans-serif;
+                background: lightsteelblue;
+                border: 0px;
+                border-radius: 8px;
                 pointer-events: none;
-                font-size: 12px;
-                transition: opacity 0.2s;
-                z-index: 10;
             }
             #related-jobs-btn {
                 display: none;
@@ -84,40 +88,41 @@
                 <div class="display-5 fw-bolder my-3" align="center">{{ job_name|safe }}</div>
 
                 <!-- SVG 그래프 -->
-                <div style="float: left;">
-                    <svg id="graph" width="750" height="700"></svg>
-                    
-                    <div class="col-lg-4 col-xl-6 mt-3 mx-3">
-                        <!-- 스킬 추가 입력 필드 -->
-                        <div class="input-group">
-                            <input type="text" id="new-skill-input" class="form-control" placeholder="추가할 스킬을 입력하세요">
-                            <button class="btn btn-success fw-bolder" id="add-skill-btn">스킬 추가</button>
+                <div class="container flex-container px-5">
+                    <div>
+                        <svg id="graph" width="750" height="700"></svg>
+                        
+                        <div class="col-lg-4 col-xl-6 mt-3 mx-3">
+                            <!-- 스킬 추가 입력 필드 -->
+                            <div class="input-group">
+                                <input type="text" id="new-skill-input" class="form-control" placeholder="추가할 스킬을 입력하세요">
+                                <button class="btn btn-success fw-bolder" id="add-skill-btn">스킬 추가</button>
+                            </div>
+                        </div>
+
+                        <div class="btn-container d-flex">
+                            <!-- 선택한 스킬 삭제 버튼 -->
+                            <button class="btn btn-outline-success fw-bolder mx-3" id="delete-skill-btn">선택한 스킬 삭제</button>
+                            <!-- 관련 직업 확인 버튼 -->
+                            <button class="btn btn-info fw-bolder mx-3" id="related-jobs-btn">관련 직업 확인</button>
+                            <!-- 뒤로가기 버튼 -->
+                            <button class="btn btn-outline-info fw-bolder mx-3" onclick="goBack()">뒤로 가기</button>
                         </div>
                     </div>
 
-                    <div class="btn-container d-flex">
-                        <!-- 선택한 스킬 삭제 버튼 -->
-                        <button class="btn btn-outline-success fw-bolder mx-3" id="delete-skill-btn">선택한 스킬 삭제</button>
-                        <!-- 관련 직업 확인 버튼 -->
-                        <button class="btn btn-info fw-bolder mx-3" id="related-jobs-btn">관련 직업 확인</button>
-                        <!-- 뒤로가기 버튼 -->
-                        <button class="btn btn-outline-info fw-bolder mx-3" onclick="goBack()">뒤로 가기</button>
+                    <!-- 3열 표 -->
+                    <div class="mt-3 mx-3">
+                        <table class="table text-center" id="skillsTable">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">Skills</th>
+                                </tr>
+                            </thead>
+                            <tbody id="skillsBody">
+                                <!-- 스킬이 여기에 삽입됩니다 -->
+                            </tbody>
+                        </table>
                     </div>
-
-                </div>
-
-                <!-- 3열 표 -->
-                <div class="mt-3 mx-3" style="float: right;">
-                    <table class="table text-center" id="skillsTable">
-                        <thead>
-                            <tr>
-                                <th colspan="3">Skills</th>
-                            </tr>
-                        </thead>
-                        <tbody id="skillsBody">
-                            <!-- 스킬이 여기에 삽입됩니다 -->
-                        </tbody>
-                    </table>
                 </div>
 
                 <script>
@@ -188,20 +193,14 @@
                             highlightItem(d.id);
                             handleSkillClick(d);
                         })
-                        .on("mouseover", function(event, d) {
-                            tooltip
-                                .html(d.id) // 노드의 id를 툴팁에 설정
-                                .style("left", (event.pageX + 5) + "px") // 마우스 위치 +5px
-                                .style("top", (event.pageY + 5) + "px") // 마우스 위치 +5px
-                                .style("display", "block"); // 툴팁 표시
+                        .on("mouseover", (event, d) => {
+                            tooltip.style("visibility", "visible").text(d.id);
                         })
-                        .on("mousemove", function(event) {
-                            tooltip
-                                .style("left", (event.pageX + 5) + "px") // 마우스 이동 시 위치 업데이트
-                                .style("top", (event.pageY + 5) + "px");
+                        .on("mousemove", (event) => {
+                            tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
                         })
-                        .on("mouseout", function() {
-                            tooltip.style("display", "none"); // 마우스가 나가면 툴팁 숨김
+                        .on("mouseout", () => {
+                            tooltip.style("visibility", "hidden");
                         })
                         .call(d3.drag()
                             .on("start", dragstarted)
@@ -362,7 +361,10 @@
                     // 스킬 추가 버튼 클릭 이벤트
                     document.getElementById('add-skill-btn').addEventListener('click', function() {
                         const newSkill = document.getElementById('new-skill-input').value.trim();
-                        if (newSkill) {
+                        if (skills_list.includes(newSkill)) {
+                            alert("이미 존재하는 스킬입니다");
+                        }
+                        else if (newSkill) {
                             addSkill(newSkill);
                         } else {
                             alert("스킬명을 입력하세요.");
@@ -415,11 +417,11 @@
                         const text = svg.append("g")
                             .attr("class", "texts")
                             .selectAll("text")
-                            .data(newNodes)
+                            .data(data.nodes)
                             .enter().append("text")
-                            .attr("x", 15)
-                            .attr("y", 3)
-                            .text(d => d.id);
+                            .attr("font-size", "10px")
+                            .attr("font-weight", "bold")
+                            .attr("text-anchor", "middle");
                     
                         // 새 시뮬레이션 설정
                         simulation.nodes(newNodes);
@@ -427,16 +429,31 @@
                         simulation.alpha(1).restart();
                     
                         simulation.on("tick", () => {
-                            link.attr("x1", d => d.source.x)
+                            link
+                                .attr("x1", d => d.source.x)
                                 .attr("y1", d => d.source.y)
                                 .attr("x2", d => d.target.x)
                                 .attr("y2", d => d.target.y);
-                    
-                            node.attr("cx", d => d.x)
+    
+                            node
+                                .attr("cx", d => d.x)
                                 .attr("cy", d => d.y);
-                    
-                            text.attr("x", d => d.x + 15)
-                                .attr("y", d => d.y + 3);
+    
+                            // 텍스트 위치와 줄바꿈 적용
+                            text
+                                .attr("x", d => d.x)
+                                .attr("y", d => d.y - 10) // 노드 중심 위로 살짝 올림
+                                .each(function(d) {
+                                    const lines = splitText(d.id, 10); // 각 텍스트를 줄바꿈
+                                    d3.select(this).selectAll("tspan").remove(); // 기존 tspan 제거
+                                    lines.forEach((line, i) => {
+                                        d3.select(this)
+                                            .append("tspan")
+                                            .attr("x", d.x)
+                                            .attr("dy", i === 0 ? "0em" : "1.2em") // 줄 간격 설정
+                                            .text(line);
+                                    });
+                                });
                         });
                     }
                     

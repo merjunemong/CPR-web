@@ -34,10 +34,11 @@ def resume(request): # CPR project page
                 request.session['uploaded_file_name'] = uploaded_file.name
                 skills = getSkillsFromResume(fs.path(filename) if file_url else None)
 
-            answers = [request.POST.get(f'answer{i}', None) for i in range(1, 11)]
-            if not all(answer is None for answer in answers):
+            answers = [request.POST.get(f'answer{i}', None) for i in range(1, 10)]
+            if all(answer.strip() == '' for answer in answers):
+                pass
+            else:
                 skills = skills + getSkillsFromAnswers(answers)
-
 
             request.session['skills'] = skills
             request.session['answers'] = answers
@@ -46,7 +47,7 @@ def resume(request): # CPR project page
     else:
         form = UploadFileForm()
         skills = request.session.pop('skills', None)
-        answers = request.session.pop('answers', ['']*10)
+        answers = request.session.pop('answers', ['']*9)
 
     return render(request, 'resume.html', {'form': form, 'skills': skills, 'answers': answers})
 

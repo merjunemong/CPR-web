@@ -88,10 +88,10 @@ class CPR_GraphDB:
     
     def add_data(self, job_name, new_skill):
         query = (
-            "MERGE (keco:KECO {name: $job_name}) " # 직업 찾기
-            "MERGE (ncs:NCS {name: $new_skill}) " # 스킬 없으면 추가
-            "MERGE (keco)-[:HAS_JOB]->(ncs) " # 양방향 관계 추가
-            "MERGE (ncs)-[:HAS_JOB]->(keco) " # 양방향 관계 추가
+            "MATCH (keco:KECO {name: $job_name}) "
+            "MERGE (ncs:NCS {name: $new_skill}) "
+            "MERGE (keco)-[:HAS_JOB]->(ncs) "
+            "MERGE (ncs)-[:HAS_JOB]->(keco) "
         )
         parameters={"job_name": job_name, "new_skill": new_skill}
         
@@ -125,8 +125,8 @@ class CPR_GraphDB:
     
 def openApp():
     scheme = "neo4j"  # Connecting to Aura, use the "neo4j+s" URI scheme
-    # host_name = "13.209.36.125"
-    host_name = "localhost"
+    host_name = "13.209.36.125"
+    # host_name = "localhost"
     port = 7687
     uri = f"{scheme}://{host_name}:{port}"
     user = "neo4j"

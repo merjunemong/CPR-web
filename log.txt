@@ -1392,3 +1392,322 @@ django.template.exceptions.TemplateSyntaxError: Invalid filter: 'defalut'
 2024-10-27 14:19:36,247 - INFO - Watching for file changes with StatReloader
 2024-10-27 16:00:35,672 - WARNING - Not Found: /graph/assets/favicon.ico
 2024-10-27 17:13:46,859 - WARNING - Run time of job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-27 00:00:00 KST)" was missed by 17:13:46.856135
+2024-10-27 23:49:18,883 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 23:49:34,282 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 23:49:34,284 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 23:49:34,284 - INFO - Scheduler started
+2024-10-27 23:49:34,498 - INFO - Watching for file changes with StatReloader
+2024-10-27 23:50:21,974 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 23:50:25,982 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 23:50:25,983 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 23:50:25,983 - INFO - Scheduler started
+2024-10-27 23:50:26,050 - INFO - Watching for file changes with StatReloader
+2024-10-27 23:54:03,472 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 23:54:06,814 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 23:54:06,814 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 23:54:06,814 - INFO - Scheduler started
+2024-10-27 23:54:06,841 - INFO - Watching for file changes with StatReloader
+2024-10-27 23:54:22,374 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 23:54:24,937 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 23:54:24,938 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 23:54:24,938 - INFO - Scheduler started
+2024-10-27 23:54:24,979 - INFO - Watching for file changes with StatReloader
+2024-10-27 23:54:56,479 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py changed, reloading.
+2024-10-27 23:54:59,574 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-27 23:54:59,576 - INFO - Added job "backup_data" to job store "default"
+2024-10-27 23:54:59,577 - INFO - Scheduler started
+2024-10-27 23:54:59,624 - INFO - Watching for file changes with StatReloader
+2024-10-28 00:00:00,012 - INFO - Running job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-29 00:00:00 KST)" (scheduled at 2024-10-28 00:00:00+09:00)
+2024-10-28 00:01:20,012 - INFO - Neo4j datatbase has backed up at 20241028
+2024-10-28 00:01:20,015 - INFO - Job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-29 00:00:00 KST)" executed successfully
+2024-10-28 00:08:54,221 - INFO - admin save new skill 데이터 분석 to 웹 개발자
+2024-10-28 00:09:03,463 - INFO - admin save new skill 정보처리기사 to 웹 개발자
+2024-10-28 00:09:17,114 - INFO - admin save new skill 영어능력 to 웹 개발자
+2024-10-28 00:09:34,500 - INFO - admin save new skill 컴퓨터 프로그래밍 to 웹 개발자
+2024-10-28 00:10:28,630 - INFO - admin delete skill 영어능력 at 웹 개발자
+2024-10-28 00:10:39,751 - INFO - admin save new skill 웹 개발 to 웹 개발자
+2024-10-28 00:10:53,528 - INFO - admin save new skill 데이터베이스 관리 to 웹 개발자
+2024-10-28 00:12:14,464 - INFO - admin save new skill 데이터베이스 관리 to 모바일앱개발자
+2024-10-28 00:12:24,025 - INFO - admin save new skill 컴퓨터 프로그래밍 to 모바일앱개발자
+2024-10-28 00:12:36,273 - INFO - admin save new skill 정보처리기사 to 모바일앱개발자
+2024-10-28 00:12:46,461 - INFO - admin save new skill 데이터 분석 to 모바일앱개발자
+2024-10-28 00:13:34,636 - INFO - admin save new skill 데이터 분석 to 데이터 전문가
+2024-10-28 00:14:54,126 - INFO - admin save new skill 데이터 분석 to 데이터 전문가
+2024-10-28 00:15:09,737 - INFO - admin save new skill 데이터베이스 관리 to 데이터 전문가
+2024-10-28 00:16:36,468 - INFO - admin save new skill 데이터베이스 관리 to 응용 소프트웨어 개발자
+2024-10-28 00:16:47,188 - INFO - admin save new skill 컴퓨터 프로그래밍 to 응용 소프트웨어 개발자
+2024-10-28 00:17:04,164 - INFO - admin save new skill 정보처리기사 to 응용 소프트웨어 개발자
+2024-10-28 00:17:34,489 - INFO - admin save new skill 정보처리기사 to 시스템 소프트웨어 개발자
+2024-10-28 00:17:47,443 - INFO - admin save new skill 컴퓨터 프로그래밍 to 시스템 소프트웨어 개발자
+2024-10-28 01:10:10,577 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 01:10:15,503 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 01:10:15,504 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 01:10:15,504 - INFO - Scheduler started
+2024-10-28 01:10:15,559 - INFO - Watching for file changes with StatReloader
+2024-10-28 15:28:55,125 - WARNING - Run time of job "backup_data (trigger: cron[hour='0', minute='0'], next run at: 2024-10-29 00:00:00 KST)" was missed by 15:28:55.122697
+2024-10-28 18:01:19,436 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 18:01:36,930 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 18:01:36,932 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 18:01:36,932 - INFO - Scheduler started
+2024-10-28 18:01:37,148 - INFO - Watching for file changes with StatReloader
+2024-10-28 18:02:08,290 - ERROR - Internal Server Error: /api/skill/add/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 132, in add_to_database
+    addData(job, skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 166, in addData
+    app.add_data(job_name, new_skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 106, in add_data
+    self.fetch_data(query, parameters)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 313, in run
+    self._auto_result._run(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 181, in _run
+    self._attach()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input ')': expected an expression, ',' or '}' (line 1, column 169 (offset: 168))
+"MATCH (keco:KECO {name: $job_name}) OPTIONAL MATCH (ncs:NCS {name: $new_skill}) with keco, ncs CALL { WITH keco, ncs WHERE ncs IS NULL CREATE (ncs:NCS {name: $new_skill) RETURN ncs} MERGE (keco)-[:HAS_JOB]->(ncs) MERGE (ncs)-[:HAS_JOB]->(keco)"
+                                                                                                                                                                         ^}
+2024-10-28 18:03:13,503 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 18:03:17,587 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 18:03:17,588 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 18:03:17,588 - INFO - Scheduler started
+2024-10-28 18:03:17,631 - INFO - Watching for file changes with StatReloader
+2024-10-28 18:03:22,236 - ERROR - Internal Server Error: /api/skill/add/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 132, in add_to_database
+    addData(job, skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 166, in addData
+    app.add_data(job_name, new_skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 106, in add_data
+    self.fetch_data(query, parameters)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 313, in run
+    self._auto_result._run(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 181, in _run
+    self._attach()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError} {message: Importing WITH should consist only of simple references to outside variables. WHERE is not allowed. (line 1, column 103 (offset: 102))
+"MATCH (keco:KECO {name: $job_name}) OPTIONAL MATCH (ncs:NCS {name: $new_skill}) with keco, ncs CALL { WITH keco, ncs WHERE ncs IS NULL CREATE (ncs:NCS {name: $new_skill}) RETURN ncs} MERGE (keco)-[:HAS_JOB]->(ncs) MERGE (ncs)-[:HAS_JOB]->(keco)"
+                                                                                                       ^}
+2024-10-28 18:42:00,171 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 18:42:03,279 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 18:42:03,279 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 18:42:03,279 - INFO - Scheduler started
+2024-10-28 18:42:03,306 - INFO - Watching for file changes with StatReloader
+2024-10-28 18:42:10,179 - ERROR - Internal Server Error: /api/skill/add/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 132, in add_to_database
+    addData(job, skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 167, in addData
+    app.add_data(job_name, new_skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 107, in add_data
+    self.fetch_data(query, parameters)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 313, in run
+    self._auto_result._run(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 181, in _run
+    self._attach()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError} {message: Variable `new_ncs` not defined (line 1, column 256 (offset: 255))
+"MATCH (keco:KECO {name: $job_name}) OPTIONAL MATCH (ncs:NCS {name: $new_skill}) WITH keco, ncs, $new_skill AS new_skill_name FOREACH (_ IN CASE WHEN ncs IS NULL THEN [1] ELSE [] END | CREATE (new_ncs:NCS {name: new_skill_name}) ) WITH keco, COALESCE(ncs, new_ncs) AS final_ncs MERGE (keco)-[:HAS_JOB]->(final_ncs) MERGE (final_ncs)-[:HAS_JOB]->(keco)"
+                                                                                                                                                                                                                                                                ^}
+2024-10-28 18:42:45,808 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 18:42:48,938 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 18:42:48,938 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 18:42:48,938 - INFO - Scheduler started
+2024-10-28 18:42:48,964 - INFO - Watching for file changes with StatReloader
+2024-10-28 18:42:53,644 - ERROR - Internal Server Error: /api/skill/add/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 132, in add_to_database
+    addData(job, skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 167, in addData
+    app.add_data(job_name, new_skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 107, in add_data
+    self.fetch_data(query, parameters)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 313, in run
+    self._auto_result._run(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 181, in _run
+    self._attach()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.DatabaseError: {code: Neo.DatabaseError.Statement.ExecutionFailed} {message: Failed to create relationship `  UNNAMED0`, node `final_ncs` is missing. If you prefer to simply ignore rows where a relationship node is missing, set 'dbms.cypher.lenient_create_relationship = true' in neo4j.conf}
+2024-10-28 18:47:13,485 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 18:47:16,580 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 18:47:16,580 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 18:47:16,580 - INFO - Scheduler started
+2024-10-28 18:47:16,608 - INFO - Watching for file changes with StatReloader
+2024-10-28 18:47:36,865 - ERROR - Internal Server Error: /api/skill/add/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 132, in add_to_database
+    addData(job, skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 169, in addData
+    app.add_data(job_name, new_skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 109, in add_data
+    self.fetch_data(query, parameters)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 313, in run
+    self._auto_result._run(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 181, in _run
+    self._attach()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'WHERE': expected 'FOREACH', 'ORDER BY', 'CALL', 'CREATE', 'LOAD CSV', 'DELETE', 'DETACH', 'FINISH', 'IN', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REMOVE', 'RETURN', 'SET', 'SKIP', 'UNION', 'UNWIND', 'USE', 'WITH' or <EOF> (line 1, column 214 (offset: 213))
+"MATCH (keco:KECO {name: $job_name}) OPTIONAL MATCH (ncs:NCS {name: $new_skill}) WITH keco, ncs, $new_skill AS new_skill_name CALL { WITH new_skill_name CREATE (new_ncs:NCS {name: new_skill_name}) RETURN new_ncs } WHERE ncs IS NULL WITH keco, COALESCE(ncs, new_ncs) AS final_ncs MERGE (keco)-[:HAS_JOB]->(final_ncs) MERGE (final_ncs)-[:HAS_JOB]->(keco)"
+                                                                                                                                                                                                                      ^}
+2024-10-28 18:50:09,847 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 18:50:12,887 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 18:50:12,888 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 18:50:12,888 - INFO - Scheduler started
+2024-10-28 18:50:12,918 - INFO - Watching for file changes with StatReloader
+2024-10-28 18:50:23,202 - ERROR - Internal Server Error: /api/skill/add/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 132, in add_to_database
+    addData(job, skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 170, in addData
+    app.add_data(job_name, new_skill)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 110, in add_data
+    self.fetch_data(query, parameters)
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 313, in run
+    self._auto_result._run(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 181, in _run
+    self._attach()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError} {message: Importing WITH should consist only of simple references to outside variables. WHERE is not allowed. (line 1, column 133 (offset: 132))
+"MATCH (keco:KECO {name: $job_name}) OPTIONAL MATCH (ncs:NCS {name: $new_skill}) WITH keco, ncs, $new_skill AS new_skill_name CALL { WITH new_skill_name WHERE ncs IS NULL CREATE (new_ncs:NCS {name: new_skill_name}) RETURN new_ncs AS created_ncs} WITH keco, COALESCE(ncs, created_ncs) AS final_ncs MERGE (keco)-[:HAS_JOB]->(final_ncs) MERGE (final_ncs)-[:HAS_JOB]->(keco)"
+                                                                                                                                     ^}
+2024-10-28 19:03:34,057 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 19:03:37,020 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 19:03:37,020 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 19:03:37,021 - INFO - Scheduler started
+2024-10-28 19:03:37,051 - INFO - Watching for file changes with StatReloader
+2024-10-28 19:43:35,491 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 19:43:38,438 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 19:43:38,438 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 19:43:38,439 - INFO - Scheduler started
+2024-10-28 19:43:38,495 - INFO - Watching for file changes with StatReloader
+2024-10-28 19:50:41,784 - INFO - admin save new skill 데이터 분석 to 웹 개발자
+2024-10-28 19:53:01,882 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-28 19:53:05,180 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-28 19:53:05,181 - INFO - Added job "backup_data" to job store "default"
+2024-10-28 19:53:05,181 - INFO - Scheduler started
+2024-10-28 19:53:05,207 - INFO - Watching for file changes with StatReloader
+2024-10-28 19:53:29,804 - INFO - admin save new skill 데이터 분석 to 웹 개발자
+2024-10-28 20:00:57,280 - INFO - admin save new skill 정보처리기사 to 웹 개발자
+2024-10-28 20:01:05,102 - INFO - admin save new skill 컴퓨터 프로그래밍 to 웹 개발자
+2024-10-28 20:01:12,826 - INFO - admin save new skill 웹 개발 to 웹 개발자
+2024-10-28 20:01:20,819 - INFO - admin save new skill 데이터베이스 관리 to 웹 개발자
+2024-10-29 02:47:19,688 - INFO - admin save new skill test to 웹 개발자
+2024-10-29 02:47:33,498 - INFO - admin delete skill test at 웹 개발자
+2024-10-29 02:49:06,556 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-29 02:49:21,928 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-29 02:49:21,931 - INFO - Added job "backup_data" to job store "default"
+2024-10-29 02:49:21,931 - INFO - Scheduler started
+2024-10-29 02:49:22,098 - INFO - Watching for file changes with StatReloader

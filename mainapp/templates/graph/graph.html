@@ -34,6 +34,22 @@
                 stroke: orange;
                 stroke-width: 3px;
             }
+            .flex-container {
+                display: flex;
+                flex-direction: row;
+            }
+            .tooltip {
+                position: absolute;
+                text-align: center;
+                width: auto;
+                height: auto;
+                padding: 5px;
+                font: 12px sans-serif;
+                background: lightsteelblue;
+                border: 0px;
+                border-radius: 8px;
+                pointer-events: none;
+            }
             .skill-cell tspan {
                 font-size: 8px;
                 line-height: 1.2;
@@ -66,31 +82,33 @@
                 <div class="display-5 fw-bolder mb-5" align="center">{{ job_name|safe }}</div>
 
                 <!-- SVG 그래프 -->
-                <div style="float: left;">
-                    <svg id="graph" width="750" height="700"></svg>
-                    
-                    <div class="col-lg-4 col-xl-6 mt-5 mx-3">
-                        <div class="btn-container mx-3">
-                            <!-- 관련 직업 확인 버튼 -->
-                            <button class="btn btn-info mb-3 fw-bolder" id="related-jobs-btn">관련 직업 확인</button>
-                            <!-- 뒤로가기 버튼 -->
-                            <button class="btn btn-outline-info fw-bolder" onclick="goBack()">뒤로 가기</button>
+                <div class="container flex-container px-5">
+                    <div>
+                        <svg id="graph" width="750" height="700"></svg>
+                        
+                        <div class="col-lg-4 col-xl-6 mt-5 mx-3">
+                            <div class="btn-container mx-3">
+                                <!-- 관련 직업 확인 버튼 -->
+                                <button class="btn btn-info mb-3 fw-bolder" id="related-jobs-btn">관련 직업 확인</button>
+                                <!-- 뒤로가기 버튼 -->
+                                <button class="btn btn-outline-info fw-bolder" onclick="goBack()">뒤로 가기</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 3열 표 -->
-                <div style="float: right;">
-                    <table class="table text-center" id="skillsTable">
-                        <thead>
-                            <tr>
-                                <th class="" colspan="3">Skills</th>
-                            </tr>
-                        </thead>
-                        <tbody id="skillsBody">
-                            <!-- 스킬이 여기에 삽입됩니다 -->
-                        </tbody>
-                    </table>
+                    <!-- 3열 표 -->
+                    <div class="mt-3 mx-3" style="float: right;">
+                        <table class="table text-center" id="skillsTable">
+                            <thead>
+                                <tr>
+                                    <th class="" colspan="3">Skills</th>
+                                </tr>
+                            </thead>
+                            <tbody id="skillsBody">
+                                <!-- 스킬이 여기에 삽입됩니다 -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <script>
@@ -154,6 +172,15 @@
                         .on("click", (event, d) => {
                             highlightItem(d.id);
                             handleSkillClick(d);
+                        })
+                        .on("mouseover", (event, d) => {
+                            tooltip.style("visibility", "visible").text(d.id);
+                        })
+                        .on("mousemove", (event) => {
+                            tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+                        })
+                        .on("mouseout", () => {
+                            tooltip.style("visibility", "hidden");
                         })
                         .call(d3.drag()
                             .on("start", dragstarted)
