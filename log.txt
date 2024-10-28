@@ -1712,3 +1712,7 @@ neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError
 2024-10-29 02:49:21,931 - INFO - Scheduler started
 2024-10-29 02:49:22,098 - INFO - Watching for file changes with StatReloader
 2024-10-29 02:52:35,743 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-29 02:54:48,579 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-29 02:54:48,580 - INFO - Added job "backup_data" to job store "default"
+2024-10-29 02:54:48,580 - INFO - Scheduler started
+2024-10-29 02:54:48,618 - INFO - Watching for file changes with StatReloader
