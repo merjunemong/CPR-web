@@ -88,7 +88,7 @@ class CPR_GraphDB:
     
     def add_data(self, job_name, new_skill):
         query = (
-            "MERGE (keco:KECO {name: $job_name}) " # 직업 찾기
+            "MATCH (keco:KECO {name: $job_name}) " # 직업 찾기
             "MERGE (ncs:NCS {name: $new_skill}) " # 스킬 없으면 추가
             "MERGE (keco)-[:HAS_JOB]->(ncs) " # 양방향 관계 추가
             "MERGE (ncs)-[:HAS_JOB]->(keco) " # 양방향 관계 추가
