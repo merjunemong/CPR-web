@@ -1716,3 +1716,106 @@ neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError
 2024-10-29 02:54:48,580 - INFO - Added job "backup_data" to job store "default"
 2024-10-29 02:54:48,580 - INFO - Scheduler started
 2024-10-29 02:54:48,618 - INFO - Watching for file changes with StatReloader
+2024-10-29 18:30:37,028 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-29 18:30:37,028 - INFO - Added job "backup_data" to job store "default"
+2024-10-29 18:30:37,028 - INFO - Scheduler started
+2024-10-29 18:30:40,366 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-29 18:30:40,366 - INFO - Added job "backup_data" to job store "default"
+2024-10-29 18:30:40,366 - INFO - Scheduler started
+2024-10-29 18:30:40,395 - INFO - Watching for file changes with StatReloader
+2024-10-29 18:33:02,475 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-29 18:33:05,410 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-29 18:33:05,411 - INFO - Added job "backup_data" to job store "default"
+2024-10-29 18:33:05,411 - INFO - Scheduler started
+2024-10-29 18:33:05,442 - INFO - Watching for file changes with StatReloader
+2024-10-31 17:57:49,358 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-31 17:57:49,359 - INFO - Added job "backup_data" to job store "default"
+2024-10-31 17:57:49,359 - INFO - Scheduler started
+2024-10-31 17:57:52,127 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-31 17:57:52,128 - INFO - Added job "backup_data" to job store "default"
+2024-10-31 17:57:52,128 - INFO - Scheduler started
+2024-10-31 17:57:52,150 - INFO - Watching for file changes with StatReloader
+2024-10-31 18:04:04,403 - WARNING - Not Found: /resume/assets/favicon.ico
+2024-10-31 18:11:09,055 - ERROR - Unable to retrieve routing information
+2024-10-31 18:11:09,126 - ERROR - Internal Server Error: /resume/result/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 61, in resume_result
+    jobs = getSimilarJob(skills)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 140, in getSimilarJob
+    jobs = app.find_similar_job(user_skills)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 32, in find_similar_job
+    names = self._find_and_return_job(user_skills)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 48, in _find_and_return_job
+    jobs = self.fetch_data(query, parameters)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-31 18:11:09,196 - WARNING - Not Found: /resume/result/assets/favicon.ico
+2024-10-31 18:11:20,377 - ERROR - Unable to retrieve routing information
+2024-10-31 18:11:20,415 - ERROR - Internal Server Error: /resume/result/
+Traceback (most recent call last):
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\views.py", line 61, in resume_result
+    jobs = getSimilarJob(skills)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 140, in getSimilarJob
+    jobs = app.find_similar_job(user_skills)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 32, in find_similar_job
+    names = self._find_and_return_job(user_skills)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 48, in _find_and_return_job
+    jobs = self.fetch_data(query, parameters)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py", line 27, in fetch_data
+    result = session.run(query, parameters)  # 쿼리 실행
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 302, in run
+    self._connect(self._config.default_access_mode)
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\session.py", line 130, in _connect
+    super()._connect(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\work\workspace.py", line 165, in _connect
+    self._pool.update_routing_table(
+  File "C:\Users\kdjun\AppData\Local\Programs\Python\Python311\Lib\site-packages\neo4j\_sync\io\_pool.py", line 802, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+2024-10-31 18:11:43,883 - INFO - C:\Users\kdjun\OneDrive\바탕 화면\학교생활\동아대\24년도\졸작\CPR-web\config\mainapp\functions\CPR_GraphDB.py changed, reloading.
+2024-10-31 18:11:46,512 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-10-31 18:11:46,512 - INFO - Added job "backup_data" to job store "default"
+2024-10-31 18:11:46,512 - INFO - Scheduler started
+2024-10-31 18:11:46,536 - INFO - Watching for file changes with StatReloader
+2024-10-31 18:13:31,696 - WARNING - Not Found: /viewdb/assets/favicon.ico
+2024-10-31 18:14:57,511 - WARNING - Not Found: /community/assets/favicon.ico
+2024-10-31 18:14:59,423 - WARNING - Not Found: /community/create/assets/favicon.ico
+2024-10-31 18:17:11,268 - WARNING - Not Found: /community/post/assets/favicon.ico
+2024-11-01 16:56:43,305 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-01 16:56:43,306 - INFO - Added job "backup_data" to job store "default"
+2024-11-01 16:56:43,306 - INFO - Scheduler started
+2024-11-01 16:56:46,166 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2024-11-01 16:56:46,167 - INFO - Added job "backup_data" to job store "default"
+2024-11-01 16:56:46,167 - INFO - Scheduler started
+2024-11-01 16:56:46,191 - INFO - Watching for file changes with StatReloader
